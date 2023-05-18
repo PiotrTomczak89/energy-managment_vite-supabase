@@ -1,0 +1,23 @@
+@import "./reset/reset";
+
+@import "./settings/sizes";
+@import "./settings/colors";
+@import "./settings/fonts";
+//@import "./settings/variables"; // ZMIENNE OGÓLNE
+@import "./settings/mixins";
+@import "./elements/buttons";
+
+//@import "./sections/general"; //STYLOWANIE DLA OGÓLNYCH ELEMENTÓW
+//@import "./sections/header";
+//@import "./sections/open_section";
+//@import "./sections/statistic";
+//@import "./sections/benefit.scss";
+//@import "./sections/pricing.scss";
+//@import "./sections/userform.scss";
+//@import "./sections/footer.scss";
+//@import "./sections/calc.scss";
+
+.test {
+    color: $gold-dark;
+    font-family: $font-primary;
+}
