@@ -7,6 +7,8 @@
 @import "./settings/mixins";
 @import "./elements/buttons";
 
+
+@import "./sections/signIn-signUp/general";
 //@import "./sections/general"; //STYLOWANIE DLA OGÓLNYCH ELEMENTÓW
 //@import "./sections/header";
 //@import "./sections/open_section";
@@ -17,7 +19,8 @@
 //@import "./sections/footer.scss";
 //@import "./sections/calc.scss";
 
-.test {
-    color: $gold-dark;
+body {
+    background-color: $gray-dark;
     font-family: $font-primary;
+    font-weight: 300;
 }

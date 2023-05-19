@@ -1,5 +1,17 @@
 .btn {
     width: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $button-description;
+    font-family: $font-primary;
+    font-weight: 600;
+    background-position: center;
+    transition: 1s;
+    border-radius: 20px;
+    cursor: pointer;
+
 }
 
 .btn-primary {
@@ -8,4 +20,27 @@
 
 .btn-alternative {
     background-color: green;
+}
+
+.btn-log {
+    //background-color: $turquoise-light;
+    background-color: transparent;
+    border: $turquoise-middle 2px solid;
+    letter-spacing: $spacing-gap;
+    color: $turquoise-light;
+    transition: 1s;
+    box-shadow: 2px 2px 1px 0px $turquoise-dark;
+
+    &:hover {
+        background: $turquoise-light radial-gradient(circle, transparent 1%, $turquoise-light 1%) center/15000%;
+        color: $white;
+        box-shadow: 0 0 0 0 $turquoise-dark;
+        letter-spacing: 8px;
+    }
+
+    &:active {
+        background-color: $turquoise-lighter;
+        background-size: 100%;
+        transition: 0s;
+    }
 }
