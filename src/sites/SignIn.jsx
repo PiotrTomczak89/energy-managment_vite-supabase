@@ -1,12 +1,17 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormLogin from "../components/FormLog";
+import supabase from "../servives/supabase";
 
 function SignIn() {
+  const [authError, setAuthError] = useState(null);
+  const navigation = useNavigate();
 
   const handleSignIn = async (event) => {
     event.preventDefault();
-    const { email, password, confirmPassword } = event.target.elements;
+    const { email, password } = event.target.elements;
 
-    let { data, error } = await supabase.auth.signInWithPassword({
+    let { error } = await supabase.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     });
@@ -19,12 +24,16 @@ function SignIn() {
 
     setAuthError(error.message);
   };
- 
+
+  //authError needs better solution below an error message that occured already.
 
   return (
-    <section className="signInUp">
-      <div className="signInUp-imageContainer"></div>
-          <FormLogin onSubmit={handleSignIn}
+    <section className="signInUp"> 
+      <div className="signInUp-imageContainer">
+      {authError && <div style={{color: "white"}}>{authError}</div>}
+      </div>
+          <FormLogin
+          onSubmitFunction={handleSignIn}
           headerSite={"Sign In"}
           extraInfoPart1={"Would you like to create an account?"}
           extraInfoPart2={"Just click on the link below"}
