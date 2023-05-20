@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import FormLogin from "../components/FormLog";
 import supabase from "../servives/supabase";
 
+import bulbOn from "../assets/bulbOn.jpg"
+
 function SignIn() {
   const [authError, setAuthError] = useState(null);
   const navigation = useNavigate();
@@ -30,8 +32,11 @@ function SignIn() {
   return (
     <section className="signInUp"> 
       <div className="signInUp-imageContainer">
+        
+        <img src={bulbOn} alt="bulbOn" width="100%" height="100%" />
       {authError && <div style={{color: "white"}}>{authError}</div>}
       </div>
+      <div className="basicShadow"></div>
           <FormLogin
           onSubmitFunction={handleSignIn}
           headerSite={"Sign In"}

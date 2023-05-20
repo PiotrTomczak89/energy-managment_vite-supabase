@@ -37,16 +37,16 @@ const FormLog = ({
             className="userFormContainer-form"
           >
             <div className="formLogin">
-              <label htmlFor="email">Login</label>
+              <label className="formLabel" htmlFor="email">Login</label>
               <input id="email" type="email" placeholder="e-mail" />
             </div>
             <div className="formPassword">
-              <label htmlFor="password">Password</label>
+              <label className="formLabel" htmlFor="password">Password</label>
               <input id="password" type="password" placeholder="password" />
             </div>
             {headerSite === "Sign Up" && (
               <div className="formPassword">
-                <label htmlFor="confirmPassword">Password</label>
+                <label className="formLabel" htmlFor="confirmPassword">Password</label>
                 <input
                   id="confirmPassword"
                   type="password"
