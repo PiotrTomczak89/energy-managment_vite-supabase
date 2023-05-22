@@ -1,6 +1,9 @@
 import supabase from "../servives/supabase";
 import { useNavigate } from "react-router-dom";
 import FormLog from "../components/FormLog";
+
+import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+
 function SignUp() {
   const navigation = useNavigate();
 
@@ -26,7 +29,10 @@ function SignUp() {
 
   return (
     <section className="signInUp">
-      <div className="signInUp-imageContainer"></div>
+      <div className="signInUp-imageContainer">
+        <img src={bulbOn} alt="bulbOn" width="100%" height="100%" />
+      </div>
+      <div className="basicShadow"></div>
       <FormLog
         onSubmitFunction={handleSignUp}
         headerSite={"Sign Up"}

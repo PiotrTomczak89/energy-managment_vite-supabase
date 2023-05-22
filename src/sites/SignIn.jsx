@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FormLogin from "../components/FormLog";
 import supabase from "../servives/supabase";
 
-import bulbOn from "../assets/bulbOn.jpg"
+import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+import bulbOff from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0ff.jpg";
+import { AuthError } from "@supabase/supabase-js";
 
 function SignIn() {
   const [authError, setAuthError] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(bulbOn);
+  const [opacity, setOpacity] = useState(100);
   const navigation = useNavigate();
 
   const handleSignIn = async (event) => {
@@ -27,25 +31,46 @@ function SignIn() {
     setAuthError(error.message);
   };
 
-  //authError needs better solution below an error message that occured already.
+ 
+    useEffect(() => {
+      if (authError !== null && opacity > 0) {
+        const intervalId = setInterval(() => {
+          setOpacity((prevOpacity) => {
+            //console.log(prevOpacity)
+            if (prevOpacity < 1) {
+              clearInterval(intervalId);
+              setBackgroundImage(bulbOff);
+            }
+            return prevOpacity - 0.2;
+          });
+        }, 5)
+      }
+    }, [authError]);
 
+  //authError needs better solution below an error message that occured already.
   return (
-    <section className="signInUp"> 
+    <section className="signInUp">
       <div className="signInUp-imageContainer">
-        
-        <img src={bulbOn} alt="bulbOn" width="100%" height="100%" />
-      {authError && <div style={{color: "white"}}>{authError}</div>}
+      
+        <img
+          src={backgroundImage}
+          alt="bulbOn"
+          width="100%"
+          height="100%"
+          style={backgroundImage === bulbOn ? {opacity: `${opacity}%`} : {opacity:"100%"}}
+        />
       </div>
       <div className="basicShadow"></div>
-          <FormLogin
-          onSubmitFunction={handleSignIn}
-          headerSite={"Sign In"}
-          extraInfoPart1={"Would you like to create an account?"}
-          extraInfoPart2={"Just click on the link below"}
-          siteToJump={"/signup"}
-          btnDescription={"Login"}
-          linkName={"Sign Up"}
-          />
+      <FormLogin
+        onSubmitFunction={handleSignIn}
+        headerSite={"Sign In"}
+        extraInfoPart1={"Would you like to create an account?"}
+        extraInfoPart2={"Just click on the link below"}
+        siteToJump={"/signup"}
+        btnDescription={"Login"}
+        linkName={"Sign Up"}
+        authError={authError}
+      />
     </section>
   );
 }

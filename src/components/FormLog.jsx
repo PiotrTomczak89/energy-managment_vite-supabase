@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import LogInError from "./LogInError";
 
 const FormLog = ({
   onSubmitFunction,
@@ -9,6 +10,7 @@ const FormLog = ({
   siteToJump,
   btnDescription,
   linkName,
+  authError,
 }) => {
   const [additionalInfo, setadditionalInfo] = useState("");
 
@@ -32,6 +34,7 @@ const FormLog = ({
       <div className="signInUp-dataContainer">
         <div className="userFormContainer">
           <h1 className="userFormContainer-title">{headerSite}</h1>
+          <LogInError authError={authError} />
           <form
             onSubmit={(event) => onSubmitFunction(event)}
             className="userFormContainer-form"
