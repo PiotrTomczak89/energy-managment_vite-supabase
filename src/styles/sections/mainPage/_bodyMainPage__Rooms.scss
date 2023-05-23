@@ -1,0 +1,66 @@
+// v className="mainContent__Rooms">
+//               <button className="btn btn-primary btn--main">Add room</button>
+//               <div className="mainContent__Rooms__Container">
+//                 <div className="mainContent__Room">
+//                   <div className="mainContent__Room__Header">Room1</div>
+//                   <div className="mainContent__Room__Body">
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <button>on/off</button>
+//                   </div>
+//                 </div>
+//                 <div className="mainContent__Room">
+//                   <div className="mainContent__Room__Header">Room2</div>
+//                   <div className="mainContent__Room__Body">
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <div><p>1</p><p>2</p><p>3</p><p>4</p></div>
+//                     <button>on/off</button>
+//                   </div>
+//                 </div>
+//               </div>
+//             </
+
+
+.mainContent__Rooms {
+    width: 100%;
+    //min-height: 50%;
+    display: flex;
+    flex-direction: column;
+    &__Container {
+        width: 100%;
+        //height: 80%;
+        border: 2px solid green;
+        .mainContent__Room {
+            display: flex;
+            //justify-content: space-between;
+            width: 100%;
+            border: 1px solid lightcoral;
+            &__Header {
+                width: 20%;
+                border: 1px solid gold
+            }
+            &__Body {
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid purple;
+                //align-items: space-between;
+                .device {
+                    display: flex;
+                    justify-content: space-evenly;
+                    text-align: center;
+                    p {
+                        width: 20%
+                    }
+                    button {
+                        margin: 2px;
+                    }
+                }
+            }
+        }
+    }
+}

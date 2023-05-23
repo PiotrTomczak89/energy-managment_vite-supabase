@@ -6,12 +6,20 @@
 //@import "./settings/variables"; // ZMIENNE OGÓLNE
 @import "./settings/mixins";
 @import "./elements/buttons";
+@import "./elements/input";
 
 
 @import "./animation/textTyping";
 
 
 @import "./sections/signIn-signUp/general";
+
+@import "./sections/mainPage/headerMainPage";
+@import "./sections/mainPage/bodyMainPage";
+@import "./sections/mainPage/bodyMainPage__Statistic";
+@import "./sections/mainPage/bodyMainPage__Data";
+@import "./sections/mainPage/bodyMainPage__Rooms";
+@import "./sections/mainPage/mainPage";
 //@import "./sections/general"; //STYLOWANIE DLA OGÓLNYCH ELEMENTÓW
 //@import "./sections/header";
 //@import "./sections/open_section";
@@ -26,4 +34,5 @@ body {
     background-color: $gray-dark;
     font-family: $font-primary;
     font-weight: 300;
+    color: $white;
 }

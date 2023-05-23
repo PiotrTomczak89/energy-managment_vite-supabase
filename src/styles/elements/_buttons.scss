@@ -1,5 +1,5 @@
 .btn {
-    width: 20px;
+    width: 200px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -15,14 +15,6 @@
 }
 
 .btn-primary {
-    background-color: red;
-}
-
-.btn-alternative {
-    background-color: green;
-}
-
-.btn-log {
     //background-color: $turquoise-light;
     background-color: transparent;
     border: $turquoise-middle 2px solid;

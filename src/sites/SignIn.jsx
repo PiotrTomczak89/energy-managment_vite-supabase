@@ -5,13 +5,14 @@ import supabase from "../servives/supabase";
 
 import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
 import bulbOff from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0ff.jpg";
-import { AuthError } from "@supabase/supabase-js";
+//import { AuthError } from "@supabase/supabase-js";
 
 function SignIn() {
   const [authError, setAuthError] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(bulbOn);
   const [opacity, setOpacity] = useState(100);
   const navigation = useNavigate();
+  let intervalId;
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -30,11 +31,10 @@ function SignIn() {
 
     setAuthError(error.message);
   };
-
  
     useEffect(() => {
-      if (authError !== null && opacity > 0) {
-        const intervalId = setInterval(() => {
+      if (authError !== null && opacity === 100) {
+        intervalId = setInterval(() => {
           setOpacity((prevOpacity) => {
             //console.log(prevOpacity)
             if (prevOpacity < 1) {
@@ -46,6 +46,14 @@ function SignIn() {
         }, 5)
       }
     }, [authError]);
+
+    const clearError = () => {
+      clearInterval(intervalId);
+      setAuthError(null);
+      setBackgroundImage(bulbOn);
+      setOpacity(100);
+    }
+  
 
   //authError needs better solution below an error message that occured already.
   return (
@@ -62,6 +70,7 @@ function SignIn() {
       </div>
       <div className="basicShadow"></div>
       <FormLogin
+        onClearError={clearError}
         onSubmitFunction={handleSignIn}
         headerSite={"Sign In"}
         extraInfoPart1={"Would you like to create an account?"}

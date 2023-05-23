@@ -4,6 +4,7 @@ import LogInError from "./LogInError";
 
 const FormLog = ({
   onSubmitFunction,
+  onClearError,
   headerSite,
   extraInfoPart1,
   extraInfoPart2,
@@ -37,6 +38,7 @@ const FormLog = ({
           <LogInError authError={authError} />
           <form
             onSubmit={(event) => onSubmitFunction(event)}
+            onChange={onClearError}
             className="userFormContainer-form"
           >
             <div className="formLogin">
@@ -57,7 +59,7 @@ const FormLog = ({
                 />
               </div>
             )}
-            <button className="btn btn-log">{btnDescription}</button>
+            <button className="btn btn-primary">{btnDescription}</button>
           </form>
           <div>
             {additionalInfo !== "<>" && <div>{additionalInfo}</div>}

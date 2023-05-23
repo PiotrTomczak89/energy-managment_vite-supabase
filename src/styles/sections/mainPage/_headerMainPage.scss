@@ -1,0 +1,35 @@
+// <header className="headerMain">
+// <div className="logo">Logo</div>
+// <div className="userInformation">
+//   <div className="userName">USER NAME</div>
+//   <div className="userImage">AVATAR</div>
+// </div>
+// </header>
+
+.headerMain {
+    width: 100%;
+    display: flex;
+    border: 2px solid green;
+    height: 10vh;
+    .logo {
+        width: 20%;
+        //height: 100%;
+        border: 2px dotted yellow;
+    }
+    .userInformation {
+        display: flex;
+        width: 80%;
+        //height: 100%;
+        border: 2px dotted purple;
+        .userName {
+            width: 90%;
+            //height: 100%;
+            border: 2px solid lightcoral;
+        }
+        .userImage {
+            width: 10%;
+            //height: 100%;
+            border: 2px solid lightcyan;
+        }
+    }
+}
