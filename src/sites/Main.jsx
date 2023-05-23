@@ -36,6 +36,7 @@ function Main() {
   return (
     <>
       <section className="mainContainer">
+        {/* header section */}
         <header className="headerMain">
           <div className="logo">Logo</div>
           <div className="userInformation">
@@ -43,14 +44,19 @@ function Main() {
             <div className="userImage">AVATAR</div>
           </div>
         </header>
+        {/* main section  */}
         <section className="mainContent">
+          {/* section left bar */}
           <section className="mainContent__Statistic">
             <div className="statisticBox">1</div>
             <div className="statisticBox">2</div>
             <div className="statisticBox">3</div>
           </section>
+          {/* section right bar  */}
           <section className="mainContent__Data">
+            {/* section to form and device from right site upper body content */}
             <div className="mainContent__Input">
+              {/* inputs to add devices + button */}
               <form className="mainContent__Input__Form" action="">
                 <div className="formMain">
                   <input type="text" />
@@ -78,6 +84,7 @@ function Main() {
                 </div>
                 <button className="btn btn-primary btn--main">Send</button>
               </form>
+              {/* right box to show decice div in general */}
               <div className="mainContent__Input__Box">
                 <div className="mainContent__Input__Box--insideBox">
                   <header>HeaderBox</header>
@@ -85,9 +92,12 @@ function Main() {
                 </div>
               </div>
             </div>
+            {/* bottom section to show rooms + button do add room */}
             <div className="mainContent__Rooms">
               <button className="btn btn-primary btn--main">Add room</button>
+              {/* geeral container for all rooms */}
               <div className="mainContent__Rooms__Container">
+                {/* room 1 */}
                 <div className="mainContent__Room">
                   <div className="mainContent__Room__Header">Room1</div>
                   <div className="mainContent__Room__Body">
@@ -97,6 +107,7 @@ function Main() {
                     <div className="device"><p>Żarówka</p><p>60W</p><p>12h</p><p>no</p><button>on/off</button></div>
                   </div>
                 </div>
+                {/* room 2 */}
                 <div className="mainContent__Room">
                   <div className="mainContent__Room__Header">Room2</div>
                   <div className="mainContent__Room__Body">
@@ -106,6 +117,7 @@ function Main() {
                     <div className="device"><p>1</p><p>2</p><p>3</p><p>4</p><button>on/off</button></div>
                   </div>
                 </div>
+                {/* room 3 */}
                 <div className="mainContent__Room">
                   <div className="mainContent__Room__Header">Room1</div>
                   <div className="mainContent__Room__Body">
@@ -115,6 +127,7 @@ function Main() {
                     <div className="device"><p>Żarówka</p><p>60W</p><p>12h</p><p>no</p><button>on/off</button></div>
                   </div>
                 </div>
+                {/* room 4 */}
                 <div className="mainContent__Room">
                   <div className="mainContent__Room__Header">Room1</div>
                   <div className="mainContent__Room__Body">
@@ -128,6 +141,7 @@ function Main() {
             </div>
           </section>
         </section>
+        <footer>Fotter</footer>
         {/* <h1>Main</h1>
       <button onClick={handleLogout}>LogOut</button>
       <div>Data from user</div>
