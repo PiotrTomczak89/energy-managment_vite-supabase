@@ -88,7 +88,15 @@ function Main() {
               <div className="mainContent__Input__Box">
                 <div className="mainContent__Input__Box--insideBox">
                   <header>HeaderBox</header>
-                  <div>BodyBox</div>
+                  <div className="deviceContainer">
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  <div className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></div>
+                  </div>
                 </div>
               </div>
             </div>
