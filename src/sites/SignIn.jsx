@@ -37,7 +37,7 @@ function SignIn() {
         intervalId = setInterval(() => {
           setOpacity((prevOpacity) => {
             //console.log(prevOpacity)
-            if (prevOpacity < 1) {
+            if (prevOpacity < 0) {
               clearInterval(intervalId);
               setBackgroundImage(bulbOff);
             }
