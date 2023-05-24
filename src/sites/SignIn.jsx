@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import FormLogin from "../components/FormLog";
+import BulbImage from "../components/BulbImage";
+
 import supabase from "../servives/supabase";
 
 import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
 import bulbOff from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0ff.jpg";
-//import { AuthError } from "@supabase/supabase-js";
 
 function SignIn() {
   const [authError, setAuthError] = useState(null);
@@ -58,7 +60,7 @@ function SignIn() {
   //authError needs better solution below an error message that occured already.
   return (
     <section className="signInUp">
-      <div className="signInUp-imageContainer">
+      {/* <div className="signInUp-imageContainer">
       
         <img
           src={backgroundImage}
@@ -67,7 +69,11 @@ function SignIn() {
           height="100%"
           style={backgroundImage === bulbOn ? {opacity: `${opacity}%`} : {opacity:"100%"}}
         />
-      </div>
+      </div> */}
+      <BulbImage 
+        opacity={opacity}
+        backgroundImage={backgroundImage}
+      />
       <div className="basicShadow"></div>
       <FormLogin
         onClearError={clearError}
