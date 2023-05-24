@@ -8,5 +8,11 @@
 .statisticBox {
     width: 80%;;
     height: 25%;
-    border: 1px dotted lightsteelblue;
+    border: 1px dotted darkcyan;
+    background-color: greenyellow;
+    @include tablet {
+        width: 30%;
+        height: 80%;
+        //margin: 20px;
+    }
 }

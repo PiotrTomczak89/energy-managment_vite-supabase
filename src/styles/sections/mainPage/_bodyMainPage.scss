@@ -8,18 +8,36 @@
           min-height: 90vh;
           display: flex;
           border: 2px solid lightgreen;
+          background-color: lightcoral;
+          @include tablet {
+            flex-direction: column;
+          }
           &__Statistic {
             width: 20%;
             //height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
             border: 2px solid lightsalmon;
+            background-color: azure;
+            @include tablet {
+              width: 100%;
+              height: 210px;
+              position: sticky;
+              opacity: 90%;
+              top: 0;
+              flex-direction: row;
+              //order: 40; An idea about put it in the bottom
+            }
           }
           &__Data {
             width: 80%;
             //height: 100%;
             border: 2px solid lightseagreen;
+            background-color: gold;
+            @include tablet {
+              width: 100%;
+            }
           }
         }

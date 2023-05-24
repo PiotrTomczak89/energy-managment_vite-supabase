@@ -41,7 +41,7 @@ function Main() {
           <div className="logo">Logo</div>
           <div className="userInformation">
             <div className="userName">USER NAME</div>
-            <div className="userImage">AVATAR</div>
+            <div className="userImage">AV</div>
           </div>
         </header>
         {/* main section  */}
@@ -94,7 +94,7 @@ function Main() {
             </div>
             {/* bottom section to show rooms + button do add room */}
             <div className="mainContent__Rooms">
-              <button className="btn btn-primary btn--main">Add room</button>
+              <button className="btn btn-primary btn--main btn--room">Add room</button>
               {/* geeral container for all rooms */}
               <div className="mainContent__Rooms__Container">
                 {/* room 1 */}
