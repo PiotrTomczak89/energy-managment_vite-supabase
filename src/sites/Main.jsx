@@ -9,7 +9,7 @@ import supabase from "../servives/supabase";
 
 import Header from "../components/mianSite/Header";
 import Content from "../components/mianSite/Content";
-import Fotter from "../components/mianSite/Fotter";
+import Footer from "../components/mianSite/Footer";
 
 function Main() {
   const navigation = useNavigate();
@@ -42,7 +42,7 @@ function Main() {
       <section className="mainContainer">
         <Header />
         <Content />
-        <Fotter />
+        <Footer />
         {/* <h1>Main</h1>
       <button onClick={handleLogout}>LogOut</button>
       <div>Data from user</div>
