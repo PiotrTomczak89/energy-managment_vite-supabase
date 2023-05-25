@@ -130,6 +130,12 @@
                     border: 1px solid $turquoise-light;
                     font-weight: 200;
                     color: $turquoise-light;
+                    @include mobile-small {
+                        font-size: 10px;
+                    }
+                    :nth-child(1) {
+                        width: 30%;
+                    }
                 }
             }
         }
