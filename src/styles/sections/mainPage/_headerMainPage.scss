@@ -8,29 +8,25 @@
 
 .headerMain {
     width: 100%;
-    display: flex;
-    border: 2px solid green;
-    background-color: aquamarine;
     height: 10vh;
+    display: flex;
+    background-color: $gray-lighter;
     .logo {
         width: 20%;
-        //height: 100%;
-        border: 2px dotted yellow;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
     }
     .userInformation {
-        display: flex;
         width: 80%;
-        //height: 100%;
-        border: 2px dotted purple;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
         .userName {
             width: 90%;
-            //height: 100%;
-            border: 2px solid lightcoral;
         }
         .userImage {
             width: 10%;
-            //height: 100%;
-            border: 2px solid lightcyan;
         }
     }
 }
