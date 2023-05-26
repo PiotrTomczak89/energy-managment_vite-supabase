@@ -13,7 +13,7 @@ const Header = () => {
       <header className="headerMain">
         <div className="logo">Logo</div>
         <div className="userInformation">
-          <div className="userName">Welcome back {sessionLogin === "" ? sessionLogin : "User"} !!!</div>
+            <div className="userName">Welcome back {sessionLogin} !!!</div>
           <div className="userImage">AV</div>
         </div>
       </header>
