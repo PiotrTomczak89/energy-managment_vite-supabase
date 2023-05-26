@@ -1,25 +1,24 @@
 import Statistic from "./Statistic";
 import Data from "./Data";
 
-import { StoreProvider , useStoreState, useStoreActions } from "easy-peasy";
+import { useStoreActions } from "easy-peasy";
 import store from "../../store/store.jsx"
 
 //useStoreState - read data
 //useStoreAction - save data
 
-const Content = () => {
+const Content = ({data}) => {
 
-
+//send data to store - user email
+const createSession = useStoreActions((actions) => actions.importSession(data.session.user.email));
 
   return (
-    <StoreProvider store={store}>
       <section className="mainContent">
         {/* section left bar */}
         <Statistic />
         {/* section right bar  */}
         <Data />
       </section>
-    </StoreProvider>
   );
 };
 
