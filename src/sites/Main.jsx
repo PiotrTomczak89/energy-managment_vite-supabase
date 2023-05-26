@@ -4,7 +4,7 @@
 //test-acc-piotr@test2
 
 import { useNavigate } from "react-router-dom";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "../servives/supabase";
 import store from "../store/store.jsx";
 import { StoreProvider } from "easy-peasy";
@@ -14,8 +14,7 @@ import Content from "../components/mianSite/Content";
 import Footer from "../components/mianSite/Footer";
 
 function Main() {
-
-  const [ session, setSession ] = useState(null)
+  const [session, setSession] = useState(null);
 
   const navigation = useNavigate();
 
@@ -28,17 +27,14 @@ function Main() {
     alreadyMounted = true;
   }, []);
 
-
   const getSession = async () => {
     const { data, error } = await supabase.auth.getSession();
     if (!data.session) {
       navigation("/signin");
-      return
+      return;
     }
     setSession(data);
   };
-
-
 
   const handleLogout = async () => {
     let { error } = await supabase.auth.signOut();
@@ -50,8 +46,10 @@ function Main() {
   return (
     <>
       <section className="mainContainer">
-        <Header />
-        {session && <StoreProvider store={store}><Content data={session}/></StoreProvider>}
+        <StoreProvider store={store}>
+          <Header />
+          {session && <Content data={session} />}
+        </StoreProvider>
         <Footer />
         {/* <h1>Main</h1>
       <button onClick={handleLogout}>LogOut</button>

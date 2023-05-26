@@ -10,6 +10,7 @@ import store from "../../store/store.jsx"
 const Content = ({data}) => {
 
 //send data to store - user email
+console.log(data)
 const createSession = useStoreActions((actions) => actions.importSession(data.session.user.email));
 
   return (

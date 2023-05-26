@@ -9,6 +9,7 @@ import { createStore, action } from "easy-peasy";
 
 //an example of using
 const store = createStore({
+    test: "Piotr",
     session: "",
     luckyNumbers: [1,2,3],
     addNumbers: action((state,payload) => {
