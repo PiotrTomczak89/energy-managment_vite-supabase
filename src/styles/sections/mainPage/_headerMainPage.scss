@@ -11,11 +11,13 @@
     height: 10vh;
     display: flex;
     background-color: $gray-lighter;
+
     .logo {
         width: 20%;
         display: flex;
         align-items: center;
         padding-left: 20px;
+
     }
     .userInformation {
         width: 80%;

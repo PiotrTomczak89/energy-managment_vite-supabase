@@ -1,6 +1,7 @@
 import Statistic from "./Statistic";
 import Data from "./Data";
 
+import { useEffect } from "react";
 import { useStoreActions } from "easy-peasy";
 import store from "../../store/store.jsx"
 

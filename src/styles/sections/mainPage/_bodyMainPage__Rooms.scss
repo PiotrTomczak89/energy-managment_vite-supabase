@@ -41,6 +41,10 @@
             margin-top: 5px;
             margin-bottom: 5px;
         }
+        @include mobile-small {
+            margin-top: 15px;
+            margin-left: 0;
+        }
     }
     &__Container {
         width: 100%;

@@ -43,24 +43,48 @@ function Main() {
     }
   };
 
+  if (!session) {
+    console.log("test");
+  }
+
   return (
     <>
-      <section className="mainContainer">
-        <StoreProvider store={store}>
-          <Header />
-          {session && <Content data={session} />}
-        </StoreProvider>
-        <Footer />
-        {/* <h1>Main</h1>
-      <button onClick={handleLogout}>LogOut</button>
-      <div>Data from user</div>
-      <form>
-        <input type="text" />
-        <button>Send</button>
-      </form> */}
-      </section>
+      {session !== null ? (
+        <section className="mainContainer">
+          <StoreProvider store={store}>
+            <Header />
+            {session && <Content data={session} />}
+          </StoreProvider>
+          <Footer />
+          {/* <h1>Main</h1>
+  <button onClick={handleLogout}>LogOut</button>
+  <div>Data from user</div>
+  <form>
+    <input type="text" />
+    <button>Send</button>
+  </form> */}
+        </section>
+      ) : (
+        <div>Loading.......</div>
+      )}
     </>
   );
 }
+
+{/* <section className="mainContainer">
+<StoreProvider store={store}>
+  <Header />
+  {session && <Content data={session} />}
+</StoreProvider>
+<Footer />
+<h1>Main</h1>
+<button onClick={handleLogout}>LogOut</button>
+<div>Data from user</div>
+<form>
+<input type="text" />
+<button>Send</button>
+</form>
+</section> */}
+
 
 export default Main;

@@ -4,8 +4,7 @@ import store from "./../../store/store.jsx"
 const Header = () => {
 
   const sessionLogin = useStoreState((state) => {
-      return state.sessionLogin
-
+        return state.sessionLogin
   })
   console.log(sessionLogin)
 
@@ -14,7 +13,7 @@ const Header = () => {
       <header className="headerMain">
         <div className="logo">Logo</div>
         <div className="userInformation">
-          <div className="userName">Welcome back {sessionLogin} !!!</div>
+          <div className="userName">Welcome back {sessionLogin === "" ? sessionLogin : "User"} !!!</div>
           <div className="userImage">AV</div>
         </div>
       </header>
