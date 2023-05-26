@@ -55,7 +55,7 @@
             @include tablet {
                 width: 100%;
             }
-            input {
+            input , select {
                 width: 90%;
                 @include tablet {
                     margin-left: 5%;

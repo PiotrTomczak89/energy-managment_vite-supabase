@@ -135,7 +135,11 @@ const FormInput = () => {
         </label>
       </div>
       <div className="formMain">
-        <input id="deviceStandBy" type="text" />
+        {/* <input id="deviceStandBy" type="text" /> */}
+        <select id="deviceStandBy" name="">
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
         <label className="formLabel" htmlFor="">
           Stand By
         </label>
