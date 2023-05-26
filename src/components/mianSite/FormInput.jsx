@@ -32,36 +32,84 @@
 
 // export default FormInput;
 import { useState } from "react";
-import store from "../../store/store.jsx"
+import { useStoreState } from "easy-peasy";
+import store from "./../../store/store.jsx"
 import supabase from "../../servives/supabase";
 
-const handleSaveData = async (event) => {
-  event.preventDefault();
+// const sessionLogin = useStoreState((state) => {
+//   return state.sessionLogin
+// })
 
+// const handleSaveData = async (event) => {
+//   event.preventDefault();
+
+//   const [standByModyfier, setStandByModyfier] = useState("YES")
+  
+//   const { deviceName , devicePower , deviceWorkingTime , deviceStandBy } = event.target.elements
+
+//   //const test = deviceStandBy.value === "YES" ? true : false
 
   
-  //const { deviceName , devicePower , deviceWorkingTime , deviceStandBy } = event.target.elements
+//     if (deviceStandBy.value === "YES") {
+//       setStandByModyfier(true)
+//     } else {
+//       setStandByModyfier(false)
+//     }
+  
 
-  const { data, error } = await supabase
-    .from("device-table")
-    .insert([
-      {
-        device_name: "someValue",
-        //device_working_time: 12,
-        device_power: 10,
-        device_standBy: true,
-        device_OnOff: false,
-      },
-    ]);
 
-  if (!error) {
-    console.log(data);
-  }
+//   const { data, error } = await supabase
+//     .from("device-table")
+//     .insert([
+//       {
+//         author: "aaa",
+//         device_name: deviceName.value,
+//         device_working_time: deviceWorkingTime.value,
+//         device_power: devicePower.value,
+//         //device_standBy: deviceStandBy.value === "YES" ? true : false,
+//         device_standBy: standByModyfier,
+//         device_OnOff: true,
+//       },
+//     ]);
 
-  //console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
-};
+//   if (!error) {
+//     console.log(data);
+//   }
+
+//   console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
+// };
 
 const FormInput = () => {
+
+  const sessionLogin = useStoreState((state) => {
+    return state.sessionLogin
+})
+
+  const handleSaveData = async (event) => {
+    event.preventDefault();
+    
+    const { deviceName , devicePower , deviceWorkingTime , deviceStandBy } = event.target.elements
+    
+    const { data, error } = await supabase
+      .from("device-table")
+      .insert([
+        {
+          author: sessionLogin,
+          device_name: deviceName.value,
+          device_working_time: deviceWorkingTime.value,
+          device_power: devicePower.value,
+          device_standBy: deviceStandBy.value === "YES" ? true : false,
+          //device_standBy: standByModyfier,
+          device_OnOff: true,
+        },
+      ]);
+  
+    if (!error) {
+      console.log(data);
+    }
+  
+    console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
+  };
   return (
     <form
       onSubmit={handleSaveData}

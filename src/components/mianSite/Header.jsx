@@ -3,18 +3,18 @@ import store from "./../../store/store.jsx"
 
 const Header = () => {
 
-  const test = useStoreState((state) => {
-      return state.session
+  const sessionLogin = useStoreState((state) => {
+      return state.sessionLogin
 
   })
-  console.log(test)
+  console.log(sessionLogin)
 
   return (
     <>
       <header className="headerMain">
         <div className="logo">Logo</div>
         <div className="userInformation">
-          <div className="userName">Welcome back {test} !!!</div>
+          <div className="userName">Welcome back {sessionLogin} !!!</div>
           <div className="userImage">AV</div>
         </div>
       </header>
