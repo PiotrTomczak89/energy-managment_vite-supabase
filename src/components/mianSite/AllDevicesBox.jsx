@@ -6,24 +6,21 @@ console.log(store)
 const AllDevicesBox = () => {
 
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
-  console.log(devicesFromDataBase)
-  //const [] = devicesFromDataBase
 
     return (
         <div className="mainContent__Input__Box">
         <div className="mainContent__Input__Box--insideBox">
           <header>HeaderBox</header>
           <ul className="deviceContainer">
-            {/* {
-              devicesFromDataBase.map(number => <li key={number} className="device"><p>{number}</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
+            {
+              devicesFromDataBase.map(el => <li key={el.id} className="device"><p>{el.device_name}</p><p>{el.device_power}</p><p>{el.device_working_time}</p><p>{el.device_standBy}</p><button>on/off</button></li>
               )
-            } */}
+            }
+          {/* <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
           <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
           <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
           <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
+          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li> */}
           </ul>
         </div>
       </div>

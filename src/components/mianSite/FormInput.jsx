@@ -91,7 +91,7 @@ const FormInput = () => {
     const { deviceName , devicePower , deviceWorkingTime , deviceStandBy } = event.target.elements
     
     const { data, error } = await supabase
-      .from("device-table")
+      .from("deviceTable")
       .insert([
         {
           author: sessionLogin,
@@ -99,7 +99,6 @@ const FormInput = () => {
           device_working_time: deviceWorkingTime.value,
           device_power: devicePower.value,
           device_standBy: deviceStandBy.value === "YES" ? true : false,
-          //device_standBy: standByModyfier,
           device_OnOff: true,
         },
       ]);

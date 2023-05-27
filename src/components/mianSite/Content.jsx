@@ -22,7 +22,7 @@ const sessionLogin = useStoreState((state) => {
   return state.sessionLogin
 })
 
-//download filtred data from supabase (filter equal to user login) 
+//download filtred data from supabase (filter equal to user login)
 const getDataFromDataBase = async () => {
   let { data , error } = await supabase
 .from('deviceTable')
