@@ -6,7 +6,11 @@ const Header = () => {
   const sessionLogin = useStoreState((state) => {
         return state.sessionLogin
   })
+//   const test = useStoreState((state) => {
+//     return state.deviceData
+// })
   console.log(sessionLogin)
+  //console.log(test)
 
   return (
     <>

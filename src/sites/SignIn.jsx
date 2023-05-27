@@ -6,7 +6,9 @@ import BulbImage from "../components/BulbImage";
 
 import supabase from "../servives/supabase";
 
-import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+//import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+//src/assets/bulb0n.jpeg
+import bulbOn from "../assets/bulb0n.jpeg";
 import bulbOff from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0ff.jpg";
 
 function SignIn() {

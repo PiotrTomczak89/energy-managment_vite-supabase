@@ -27,6 +27,12 @@ function Main() {
     alreadyMounted = true;
   }, []);
 
+  // useEffect(() => {
+  //   if (session) {
+  //     getDataFromDataBase()
+  //   }
+  // }, [session])
+
   const getSession = async () => {
     const { data, error } = await supabase.auth.getSession();
     if (!data.session) {
@@ -34,7 +40,22 @@ function Main() {
       return;
     }
     setSession(data);
+    console.log(data.session.user.email);
+    
   };
+
+  
+
+//   const getDataFromDataBase = async () => {
+//     let { data , error } = await supabase
+//   .from('deviceTable')
+//   .select("*")
+
+//   if (!error) {
+//     console.log(data)
+//   }
+
+// }
 
   const handleLogout = async () => {
     let { error } = await supabase.auth.signOut();
@@ -53,7 +74,7 @@ function Main() {
         <section className="mainContainer">
           <StoreProvider store={store}>
             <Header />
-            {session && <Content data={session} />}
+            <Content data={session} />
           </StoreProvider>
           <Footer />
           {/* <h1>Main</h1>
