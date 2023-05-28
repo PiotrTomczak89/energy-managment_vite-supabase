@@ -11,7 +11,10 @@ import store from "../../store/store.jsx";
 
 const Content = ({data}) => {
 
-  const dataBaseA = useStoreActions((actions) => actions.addDeviceData);
+const [dataBaseData , setDataBasedata] = useState(null);
+
+//save data as table of device
+const dataBaseA = useStoreActions((actions) => actions.addDeviceData);
 
 
 //save data as user email to storage
@@ -29,10 +32,13 @@ const getDataFromDataBase = async () => {
 .select("*").eq("author" , sessionLogin);;
 
 if (!error) {
+  //setDataBasedata(data)
   dataBaseA(data);
 }
 
 }
+
+//console.log(dataBaseData)
 
 //run function that put data into store
 getDataFromDataBase()
@@ -40,7 +46,7 @@ getDataFromDataBase()
   return (
       <section className="mainContent">
         {/* section left bar */}
-        <Statistic />
+        <Statistic/>
         {/* section right bar  */}
         <Data />
       </section>
