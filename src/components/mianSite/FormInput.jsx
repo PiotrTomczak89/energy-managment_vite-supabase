@@ -81,6 +81,8 @@ import supabase from "../../servives/supabase";
 
 const FormInput = () => {
 
+  const [ errorName , setErrorName ] = useState(null)
+ 
   const sessionLogin = useStoreState((state) => {
     return state.sessionLogin
 })
@@ -89,6 +91,12 @@ const FormInput = () => {
     event.preventDefault();
     
     const { deviceName , devicePower , deviceWorkingTime , deviceStandBy } = event.target.elements
+
+    if (deviceName.value === '') {
+      alert('Name-is required')
+      setErrorName('- is required')
+      return
+    }
     
     const { data, error } = await supabase
       .from("deviceTable")
@@ -109,8 +117,16 @@ const FormInput = () => {
   
     console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
   };
+  
+ const cleanError = () => {
+  if (errorName) {
+    setErrorName(null)
+  }
+ }
+  
   return (
     <form
+      onChange={cleanError}
       onSubmit={handleSaveData}
       className="mainContent__Input__Form"
       action=""
@@ -118,8 +134,9 @@ const FormInput = () => {
       <div className="formMain">
         <input id="deviceName" type="text" />
         <label className="formLabel" htmlFor="">
-          Name
+          Name<p style = {{color: "red"}}>{errorName}</p>
         </label>
+        
       </div>
       <div className="formMain">
         <input id="devicePower" type="number" />
