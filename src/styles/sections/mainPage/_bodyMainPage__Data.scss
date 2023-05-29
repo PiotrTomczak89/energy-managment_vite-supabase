@@ -98,14 +98,12 @@
 
     &__Box {
         width: 40%;
-        max-height: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: $gray-middle;
         border-radius: 20px;
         padding: 20px;
-        overflow: overlay;
         @include tablet {
             width: 100%;
             margin-top: 20px;
@@ -116,9 +114,6 @@
             height: 100%;
             .headerContainer {
                     background-color: $gray-middle;
-                    @include mobile {
-                        margin-top: 450px;
-                    }
                 header {
                     width: 100%;
                     text-align: center;
@@ -131,6 +126,9 @@
             
 
             .deviceContainer {
+                max-height: 200px;
+                overflow-y: auto;
+                overflow-x: hidden;
                 display: flex;
                 flex-direction: column;
                 .device {
