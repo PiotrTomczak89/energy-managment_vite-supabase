@@ -11,7 +11,16 @@ const AllDevicesBox = () => {
         <div className="mainContent__Input__Box">
         <div className="mainContent__Input__Box--insideBox">
           <div className="headerContainer">
-          <header>HeaderBox</header>
+          <header>
+            Devices Basket
+          <ul>
+            <li>Name</li>
+            <li>Watt</li>
+            <li>Time</li>
+            <li>Switch</li>
+          </ul>
+          </header>
+
           </div>
           <ul className="deviceContainer">
             {
