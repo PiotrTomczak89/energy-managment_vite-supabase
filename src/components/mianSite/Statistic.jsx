@@ -1,48 +1,61 @@
-import { useState , useEffect } from "react";
-import { StoreProvider , useStoreState, useStoreActions } from "easy-peasy";
-import store from "../../store/store.jsx"
-
+import { useState, useEffect } from "react";
+import { StoreProvider, useStoreState, useStoreActions } from "easy-peasy";
+import store from "../../store/store.jsx";
 
 const Statistic = () => {
-
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
 
-  const [power , setPower] = useState(null)
-  const [workingTime , setWorkingTime] = useState(null)
+  const [power, setPower] = useState(0);
+  const [workingTime, setWorkingTime] = useState(null);
+
+
+    //wrong way of count power
+  // useEffect(() => {
+  //   setPower(devicesFromDataBase.reduce((acc, next) => {
+  //       return acc + next.device_power;
+  //     }, 0) / 1000);
+  //   setWorkingTime(devicesFromDataBase.reduce((acc, next) => {
+  //       //count miliseconds from data base 1h = 3600000ms date-ftn
+  //       return acc + Date.parse(`01 Jan 1970 ${next.device_working_time} UTC`);
+  //     }, 0) / 3600000);
+  // }, [devicesFromDataBase]);
 
   useEffect(() => {
-      const generalPower = devicesFromDataBase.reduce((acc , next) => {
-      return acc + next.device_power
-    },0) / 1000
-    const generalWorkingTime = devicesFromDataBase.reduce((acc , next) => {
-      //count miliseconds from data base 1h = 3600000ms date-ftn
-      return acc + Date.parse(`01 Jan 1970 ${next.device_working_time} UTC`)
-    },0) / 3600000
-     setPower(generalPower);
-     setWorkingTime(generalWorkingTime);
+    let itemPower = 0;
+    let itemWorkingTime = 0;
+    const powerTable = devicesFromDataBase.map((el , next) => {
+        itemPower = el.device_power / 1000
+        //count miliseconds from data base 1h = 3600000ms date-ftn
+        itemWorkingTime = Date.parse(`01 Jan 1970 ${el.device_working_time} UTC`) / 3600000
+        return itemPower * itemWorkingTime
+    })
+    setPower(powerTable.reduce((acc, next) => {
+      return acc + next
+    }, 0))
   }, [devicesFromDataBase]);
 
   return (
     <>
-      <section className="mainContent__Statistic">
-      <div className="statisticBox">
-          <h2>Consumed power</h2>
-          <p>{devicesFromDataBase && devicesFromDataBase.length}</p>
-        </div>
+      {
+        devicesFromDataBase &&
+        <section className="mainContent__Statistic">
         <div className="statisticBox">
           <h2>Consumed power in real time</h2>
+          <p>{devicesFromDataBase.length}</p>
+        </div>
+        <div className="statisticBox">
+          <h2>Consumed power</h2>
           {/* <p>{devicesFromDataBase && testF(devicesFromDataBase)}</p> */}
-          <p>{devicesFromDataBase && (power * workingTime).toFixed(2)}</p>
+          <p>{(power).toFixed(2)}</p>
         </div>
         <div className="statisticBox">
           <h2>Quantity of devices</h2>
-          <p>{devicesFromDataBase && devicesFromDataBase.length}</p>
+          <p>{devicesFromDataBase.length}</p>
         </div>
       </section>
+      }
     </>
   );
-
 };
-
 
 export default Statistic;
