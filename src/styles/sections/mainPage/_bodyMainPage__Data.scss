@@ -31,6 +31,7 @@
 // </div>
 
 .mainContent__Input {
+    
     display: flex;
     background-color: $gray-dark;
     border-radius: 5px;
@@ -97,27 +98,38 @@
 
     &__Box {
         width: 40%;
-        height: 100%;
+        max-height: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: $gray-middle;
         border-radius: 20px;
         padding: 20px;
+        overflow: overlay;
         @include tablet {
             width: 100%;
             margin-top: 20px;
             margin-bottom: 20px;
         }
         &--insideBox {
-            width: 90%;
-            header {
             width: 100%;
-            text-align: center;
-            font-size: 32px;
-            font-weight: 500;
-            color: $turquoise-lighter;
+            height: 100%;
+            .headerContainer {
+                    background-color: $gray-middle;
+                    @include mobile {
+                        margin-top: 450px;
+                    }
+                header {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 32px;
+                    font-weight: 500;
+                    color: $turquoise-lighter;
+                    
+                    }
             }
+            
+
             .deviceContainer {
                 display: flex;
                 flex-direction: column;

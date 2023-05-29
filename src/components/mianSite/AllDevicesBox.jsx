@@ -10,7 +10,9 @@ const AllDevicesBox = () => {
     return (
         <div className="mainContent__Input__Box">
         <div className="mainContent__Input__Box--insideBox">
+          <div className="headerContainer">
           <header>HeaderBox</header>
+          </div>
           <ul className="deviceContainer">
             {
               devicesFromDataBase.map(el => <li key={el.id} className="device"><p>{el.device_name}</p><p>{el.device_power}</p><p>{el.device_working_time}</p><p>{el.device_standBy}</p><button>on/off</button></li>
