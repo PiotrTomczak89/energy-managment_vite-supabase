@@ -11,10 +11,10 @@ import store from "../../store/store.jsx";
 
 const Content = ({data}) => {
 
-const [dataBaseData , setDataBasedata] = useState(null);
+//const [dataBaseData , setDataBasedata] = useState(null);
 
 //save data as table of device
-const dataBaseA = useStoreActions((actions) => actions.addDeviceData);
+const importDeviceFromDataBase = useStoreActions((actions) => actions.importDeviceData);
 
 
 //save data as user email to storage
@@ -33,7 +33,7 @@ const getDataFromDataBase = async () => {
 
 if (!error) {
   //setDataBasedata(data)
-  dataBaseA(data);
+  importDeviceFromDataBase(data);
 }
 
 }

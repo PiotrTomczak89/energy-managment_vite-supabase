@@ -32,7 +32,8 @@
 
 // export default FormInput;
 import { useState } from "react";
-import { useStoreState } from "easy-peasy";
+//import { useStoreState } from "easy-peasy";
+import { useStoreActions , useStoreState } from "easy-peasy";
 import store from "./../../store/store.jsx"
 import supabase from "../../servives/supabase";
 
@@ -80,6 +81,7 @@ import supabase from "../../servives/supabase";
 // };
 
 const FormInput = () => {
+  const insertExtraDevice = useStoreActions((actions) => actions.addLatestDeviceToDeviceTable);
 
   const [ errorName , setErrorName ] = useState(null)
  
@@ -109,13 +111,14 @@ const FormInput = () => {
           device_standBy: deviceStandBy.value === "YES" ? true : false,
           device_OnOff: true,
         },
-      ]);
-  
+      ])
+      .select('*')
     if (!error) {
-      console.log(data);
+      //function added one specific device to existing data in store
+      insertExtraDevice(data[0])
     }
   
-    console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
+    //console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
   };
   
  const cleanError = () => {

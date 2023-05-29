@@ -1,9 +1,17 @@
 import { StoreProvider , useStoreState, useStoreActions } from "easy-peasy";
+import { useEffect , useState } from "react";
 import store from "../../store/store.jsx"
+
 
 console.log(store)
 
 const AllDevicesBox = () => {
+
+  // const [devicesFromDataBase, setDevicesFromDataBase] = useState(store)
+
+  // useEffect(() => {
+  //   setDevicesFromDataBase(useStoreState((state) => state.deviceData));
+  // }, [store]);
 
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
 

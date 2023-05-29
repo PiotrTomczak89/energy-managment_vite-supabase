@@ -19,12 +19,13 @@ const store = createStore({
     importSession: action((state, payload) => {
         state.sessionLogin = payload;
     }),
-    addDeviceData: action((state, payload) => {
-        //console.log(state, "state")
-        //console.log(payload, "payload")
+    importDeviceData: action((state, payload) => {
         state.deviceData = payload.map(element => {
             return element;
         });
+    }),
+    addLatestDeviceToDeviceTable: action((state, payload) => {
+        state.deviceData.push(payload)
     }),
 });
 
