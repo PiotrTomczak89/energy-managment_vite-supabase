@@ -43,6 +43,7 @@ const AllDevicesBox = () => {
             <li>Watt</li>
             <li>Time</li>
             <li>Switch</li>
+            <li>Delete</li>
           </ul>
           </header>
 
@@ -54,7 +55,7 @@ const AllDevicesBox = () => {
                 <p>{el.device_power}</p>
                 <p>{el.device_working_time}</p>
                 <p>{el.device_standBy}</p>
-                <button>on/off</button>
+                <span class="material-symbols-outlined on-off-icon">power_settings_new</span>
                 <span id={el.id} onClick={handleDelete} className="material-symbols-outlined delete-icon">delete</span>
                 </li>
               )

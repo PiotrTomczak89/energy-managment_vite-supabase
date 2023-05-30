@@ -5,6 +5,7 @@ import store from "../../store/store.jsx";
 const Statistic = () => {
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
   const daysInYear = 365;
+  const daysInMounth = daysInYear / 12;
 
   const [power, setPower] = useState(0);
   const [workingTime, setWorkingTime] = useState(null);
@@ -42,16 +43,20 @@ const Statistic = () => {
         <section className="mainContent__Statistic">
         <div className="statisticBox">
           <h2>Consumed power / DAY</h2>
-          <p>{(power).toFixed(2)}</p>
+          <p>{(power).toFixed(2)}<sup>kWh</sup></p>
+        </div>
+        <div className="statisticBox">
+          <h2>Consumed power / MOUNTH</h2>
+          {/* <p>{devicesFromDataBase && testF(devicesFromDataBase)}</p> */}
+          <p>{(power * daysInMounth).toFixed(2)}<sup>kWh</sup></p>
         </div>
         <div className="statisticBox">
           <h2>Consumed power / YEAR</h2>
-          {/* <p>{devicesFromDataBase && testF(devicesFromDataBase)}</p> */}
-          <p>{(power * daysInYear).toFixed(2)}</p>
+          <p>{(power * daysInYear).toFixed(2)}<sup>kWh</sup></p>
         </div>
         <div className="statisticBox">
           <h2>Quantity of devices</h2>
-          <p>{devicesFromDataBase.length}</p>
+          <p>{devicesFromDataBase.length}<sup>items</sup></p>
         </div>
       </section>
       }
