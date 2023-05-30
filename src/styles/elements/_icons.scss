@@ -1,21 +1,29 @@
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48,
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48,
 }
 
 .delete-icon {
     cursor: pointer;
     color: darkred;
     transition: 1s;
+
     &:hover {
         rotate: 45deg;
         color: red;
     }
 }
 
-// .on-off-icon {
-    
-// }
+
+.switchOn {
+    cursor: pointer;
+    color: $turquoise-lighter
+}
+
+.switchOff {
+    cursor: pointer;
+    color: $gray-lightest
+}

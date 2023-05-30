@@ -8,16 +8,11 @@ console.log(store)
 
 const AllDevicesBox = () => {
 
-  // const [devicesFromDataBase, setDevicesFromDataBase] = useState(store)
-
-  // useEffect(() => {
-  //   setDevicesFromDataBase(useStoreState((state) => state.deviceData));
-  // }, [store]);
-
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
 
   const deleteDevice = useStoreActions((actions) => actions.deleteDevice);
 
+  const switchOnOff = useStoreActions((actions) => actions.turnOnOff);
 
   const handleDelete = async (event) => {
     
@@ -27,8 +22,20 @@ const AllDevicesBox = () => {
     .eq('id' , event.target.id)
 
     if (!error) {
-      //deleteDevice(event.target.id)
       deleteDevice({table: devicesFromDataBase , id: event.target.id})
+    }
+  }
+
+  const handleSwitch = async (event) => {
+    const { data , error } = await supabase
+    .from('deviceTable')
+    .update({device_OnOff: event.target.className === "switchOn material-symbols-outlined on-off-icon" ? false : true})
+    .eq('id' , event.target.id)
+
+    if (!error) {
+      console.log(data)
+      console.log(event.target.className)
+      switchOnOff(devicesFromDataBase)
     }
   }
 
@@ -55,16 +62,21 @@ const AllDevicesBox = () => {
                 <p>{el.device_power}</p>
                 <p>{el.device_working_time}</p>
                 <p>{el.device_standBy}</p>
-                <span class="material-symbols-outlined on-off-icon">power_settings_new</span>
-                <span id={el.id} onClick={handleDelete} className="material-symbols-outlined delete-icon">delete</span>
+                <span
+                id={el.id}
+                onClick={handleSwitch}
+                className={el.device_OnOff ? "switchOn material-symbols-outlined on-off-icon" : "switchOff material-symbols-outlined on-off-icon"}>
+                {el.device_OnOff ? "power_settings_new" : "power_settings_new"}
+                </span>
+                <span
+                id={el.id}
+                onClick={handleDelete}
+                className="material-symbols-outlined delete-icon">
+                  delete
+                </span>
                 </li>
               )
             }
-          {/* <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li>
-          <li className="device"><p>Lodówka</p><p>100W</p><p>10h</p><p>yes</p><button>on/off</button></li> */}
           </ul>
         </div>
       </div>

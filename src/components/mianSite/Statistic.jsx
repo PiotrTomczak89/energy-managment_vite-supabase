@@ -40,6 +40,7 @@ const Statistic = () => {
     <>
       {
         devicesFromDataBase &&
+        
         <section className="mainContent__Statistic">
         <div className="statisticBox">
           <h2>Consumed power / DAY</h2>

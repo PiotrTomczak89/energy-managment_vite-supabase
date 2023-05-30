@@ -28,14 +28,17 @@ const store = createStore({
         state.deviceData.push(payload)
     }),
     deleteDevice: action((state, {table , id}) => {
-        // console.log(table)
-        // console.log(id)
         state.deviceData = table.filter((element) =>
         {
             return element.id != id;
         }
         )
     }),
+    turnOnOff: action((state,payload) => {
+        state.deviceData = payload.map(element => {
+            return element;
+        });
+    })
 });
 
 export default store;

@@ -18,6 +18,8 @@ const Header = () => {
         <div className="logo">Logo</div>
         <div className="userInformation">
             <div className="userName">Welcome back {sessionLogin} !!!</div>
+            {/* //an idea about cost of kWh */}
+            {/* <input placeholder="00000" type="number" style={{width: "10%" , height:"30px" , zIndex: "100"}}></input> */}
           <div className="userImage">AV</div>
         </div>
       </header>
