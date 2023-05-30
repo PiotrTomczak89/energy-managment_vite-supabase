@@ -3,11 +3,13 @@
 @import "./settings/sizes";
 @import "./settings/colors";
 @import "./settings/fonts";
+
 //@import "./settings/variables"; // ZMIENNE OGÓLNE
 @import "./settings/mixins";
 @import "./elements/buttons";
 @import "./elements/input";
 @import "./elements/scrollbar";
+@import "./elements/icons";
 
 
 @import "./animation/textTyping";

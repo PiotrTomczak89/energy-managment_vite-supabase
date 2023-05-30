@@ -27,6 +27,15 @@ const store = createStore({
     addLatestDeviceToDeviceTable: action((state, payload) => {
         state.deviceData.push(payload)
     }),
+    deleteDevice: action((state, {table , id}) => {
+        // console.log(table)
+        // console.log(id)
+        state.deviceData = table.filter((element) =>
+        {
+            return element.id != id;
+        }
+        )
+    }),
 });
 
 export default store;
