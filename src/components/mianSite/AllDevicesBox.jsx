@@ -35,7 +35,7 @@ const AllDevicesBox = () => {
     if (!error) {
       console.log(data)
       console.log(event.target.className)
-      switchOnOff(devicesFromDataBase)
+      switchOnOff({table: devicesFromDataBase , id: event.target.id})
     }
   }
 
@@ -64,6 +64,7 @@ const AllDevicesBox = () => {
                 <p>{el.device_standBy}</p>
                 <span
                 id={el.id}
+                data-test={el.id}
                 onClick={handleSwitch}
                 className={el.device_OnOff ? "switchOn material-symbols-outlined on-off-icon" : "switchOff material-symbols-outlined on-off-icon"}>
                 {el.device_OnOff ? "power_settings_new" : "power_settings_new"}

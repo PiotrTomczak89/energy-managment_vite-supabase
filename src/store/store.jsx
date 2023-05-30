@@ -34,11 +34,25 @@ const store = createStore({
         }
         )
     }),
-    turnOnOff: action((state,payload) => {
-        state.deviceData = payload.map(element => {
+    turnOnOff: action((state,{table , id}) => {
+        state.deviceData = table.map(element => {
+            if (element.id == id) {
+                return {...element, device_OnOff: element.device_OnOff ? false : true}
+            }
+            console.log(element)
             return element;
         });
-    })
+    }),
 });
 
 export default store;
+
+// const updateItemNameById = (array, idToUpdate, newName) => {
+//     const newArray = array.map((item) => {
+//       if (item.id === idToUpdate) {
+//         return { ...item, name: newName };
+//       }
+//       return item;
+//     });
+//     return newArray;
+//   };
