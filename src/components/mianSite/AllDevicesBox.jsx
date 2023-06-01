@@ -143,7 +143,7 @@ const AllDevicesBox = () => {
                     ? "switchOn material-symbols-outlined on-off-icon"
                     : "switchOff material-symbols-outlined on-off-icon"
                 }
-              >radio_button_checked</span>
+              >mode_standby</span>
               {el.device_name}
               </p>
               
