@@ -156,7 +156,7 @@ const AllDevicesBox = () => {
                   onChange={handleUpdatePower}
                   min="1"
                   placeholder={el.device_power}
-                  // value={el.device_power}
+                  // value={el.device_power} !!!!!!!!!!!!!!!
                   style={smallInputStyle}
                   type="number"
                 />
@@ -169,7 +169,7 @@ const AllDevicesBox = () => {
                   onChange={handleUpdateWorkingTime}
                   min="1"
                   placeholder={el.device_working_time}
-                  //value={el.device_working_time}
+                  //value={el.device_working_time} !!!!!!!!!!!!!!!
                   style={smallInputStyle}
                   type="time"
                 />
