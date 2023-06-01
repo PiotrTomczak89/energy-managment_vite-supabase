@@ -12,7 +12,11 @@ const AllDevicesBox = () => {
 
   const switchOnOff = useStoreActions((actions) => actions.turnOnOff);
 
+  const switchStandBy = useStoreActions((actions) => actions.standByModyfier);
+
   const updatePower = useStoreActions((actions) => actions.changePower);
+
+  
 
   const updateWorkingTime = useStoreActions(
     (actions) => actions.changeWorkingTime
@@ -29,7 +33,7 @@ const AllDevicesBox = () => {
     }
   };
 
-  const handleSwitch = async (event) => {
+  const handleSwitchOnOff = async (event) => {
     const { data, error } = await supabase
       .from("deviceTable")
       .update({
@@ -43,6 +47,23 @@ const AllDevicesBox = () => {
 
     if (!error) {
       switchOnOff({ table: devicesFromDataBase, id: event.target.id });
+    }
+  };
+
+  const handleSwitchStandBy = async (event) => {
+    const { data, error } = await supabase
+      .from("deviceTable")
+      .update({
+        device_standBy:
+        event.target.className ===
+        "switchOn material-symbols-outlined on-off-icon"
+          ? false
+          : true,
+      })
+      .eq("id", event.target.id);
+
+    if (!error) {
+      switchStandBy({ table: devicesFromDataBase, id: event.target.id });
     }
   };
 
@@ -94,7 +115,7 @@ const AllDevicesBox = () => {
           <header>
             Devices Basket
             <ul>
-              <li>Name</li>
+              <li>StBy Name</li>
               <li>Watt</li>
               <li>Time</li>
               <li>Switch</li>
@@ -111,7 +132,21 @@ const AllDevicesBox = () => {
         <ul className="deviceContainer">
           {devicesFromDataBase.map((el) => (
             <li key={el.id} className="device">
-              <p>{el.device_name}</p>
+
+              <p style={{display:"flex" , alignItems:"center"}}>
+                <span
+                id={el.id}
+                data-test={el.id}
+                onClick={handleSwitchStandBy}
+                className={
+                  el.device_standBy
+                    ? "switchOn material-symbols-outlined on-off-icon"
+                    : "switchOff material-symbols-outlined on-off-icon"
+                }
+              >radio_button_checked</span>
+              {el.device_name}
+              </p>
+              
               {/* <p>{el.device_power}</p> */}
 
               <p className="inputNumberContainer">
@@ -139,18 +174,17 @@ const AllDevicesBox = () => {
                   type="time"
                 />
               </p>
-              <p>{el.device_standBy}</p>
+              {/* <p>{el.device_stand_OnOff}</p> */}
               <span
                 id={el.id}
                 data-test={el.id}
-                onClick={handleSwitch}
+                onClick={handleSwitchOnOff}
                 className={
                   el.device_OnOff
                     ? "switchOn material-symbols-outlined on-off-icon"
                     : "switchOff material-symbols-outlined on-off-icon"
                 }
               >
-                {/* {el.device_OnOff ? "power_settings_new" : "power_settings_new"} */}
                 power_settings_new
               </span>
               <span

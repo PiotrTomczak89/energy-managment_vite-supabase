@@ -6,6 +6,7 @@ const Statistic = () => {
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
   const daysInYear = 365;
   const daysInMounth = daysInYear / 12;
+  let stanByPower = 0;
 
   const [power, setPower] = useState(0);
   const [workingTime, setWorkingTime] = useState(null);
@@ -22,16 +23,21 @@ const Statistic = () => {
   //     }, 0) / 3600000);
   // }, [devicesFromDataBase]);
 
+
+  //NEEDS SOLUTION FOR STANDBY
   useEffect(() => {
     let itemPower = 0;
     let itemWorkingTime = 0;
     const powerTable = devicesFromDataBase.map((el , next) => {
-        if (el.device_OnOff) {
-          itemPower = el.device_power / 1000
-          //count miliseconds from data base 1h = 3600000ms date-ftn
-          itemWorkingTime = Date.parse(`01 Jan 1970 ${el.device_working_time} UTC`) / 3600000
-          
+        if (el.device_standBy) {
+          stanByPower = 5 / 1000 * 24;
         }
+          if (el.device_OnOff) {
+            itemPower = (el.device_power / 1000)
+            //count miliseconds from data base 1h = 3600000ms date-ftn
+            itemWorkingTime = Date.parse(`01 Jan 1970 ${el.device_working_time} UTC`) / 3600000
+            console.log(itemWorkingTime)
+          }
         return itemPower * itemWorkingTime
     })
     setPower(powerTable.reduce((acc, next) => {

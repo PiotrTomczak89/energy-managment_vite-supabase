@@ -43,6 +43,15 @@ const store = createStore({
             return element;
         });
     }),
+    standByModyfier: action((state,{table , id}) => {
+        state.deviceData = table.map(element => {
+            if (element.id == id) {
+                return {...element, device_standBy: element.device_standBy ? false : true}
+            }
+            console.log(element.device_standBy)
+            return element;
+        });
+    }),
     changePower: action((state,{table , id , value}) => {
         state.deviceData = table.map(element => {
             if (element.id == id) {
