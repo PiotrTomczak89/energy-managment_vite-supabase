@@ -1,5 +1,5 @@
 import { useStoreState } from "easy-peasy";
-import store from "./../../store/store.jsx"
+//import store from "./../../store/store.jsx"
 
 const Header = () => {
 

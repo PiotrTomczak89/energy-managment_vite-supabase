@@ -14,6 +14,8 @@ const AllDevicesBox = () => {
 
   const switchOnOff = useStoreActions((actions) => actions.turnOnOff);
 
+  const updatePower = useStoreActions((actions) => actions.changePower);
+
   const handleDelete = async (event) => {
     
     const { error } = await supabase
@@ -27,15 +29,26 @@ const AllDevicesBox = () => {
   }
 
   const handleSwitch = async (event) => {
+
     const { data , error } = await supabase
     .from('deviceTable')
     .update({device_OnOff: event.target.className === "switchOn material-symbols-outlined on-off-icon" ? false : true})
     .eq('id' , event.target.id)
 
     if (!error) {
-      console.log(data)
-      console.log(event.target.className)
       switchOnOff({table: devicesFromDataBase , id: event.target.id})
+    }
+  }
+
+  const handleUpdatePower = async (event) => {
+
+    const { data , error } = await supabase
+    .from('deviceTable')
+    .update({device_power: event.target.value})
+    .eq('id' , event.target.id)
+
+    if (!error) {
+      updatePower({table: devicesFromDataBase , id: event.target.id , value: event.target.value})
     }
   }
 
@@ -50,7 +63,11 @@ const AllDevicesBox = () => {
             <li>Watt</li>
             <li>Time</li>
             <li>Switch</li>
-            <li>Delete</li>
+            <li>
+            <span className={"switchOn material-symbols-outlined on-off-icon"}>
+                delete
+              </span>
+            </li>
           </ul>
           </header>
 
@@ -58,8 +75,20 @@ const AllDevicesBox = () => {
           <ul className="deviceContainer">
             {
               devicesFromDataBase.map(el => <li key={el.id} className="device">
-                <p>{el.device_name}</p>
-                <p>{el.device_power}</p>
+                <p >{el.device_name}</p>
+                {/* <p>{el.device_power}</p> */}
+                
+                <p className="inputNumberContainer">
+                <input
+                className="inputNumberSmall"
+                id={el.id}
+                onChange={handleUpdatePower}
+                min="1"
+                placeholder={el.device_power}
+                // value={el.device_power}
+                style={{height:"70%" , width: "100%" , textAlign: "left" , border: "0px", background:"transparent", boxShadow:"0 0 0 0", paddingLeft: "2px" , borderRadius: "0"}}
+                type="number"/>
+                </p>
                 <p>{el.device_working_time}</p>
                 <p>{el.device_standBy}</p>
                 <span
@@ -67,7 +96,8 @@ const AllDevicesBox = () => {
                 data-test={el.id}
                 onClick={handleSwitch}
                 className={el.device_OnOff ? "switchOn material-symbols-outlined on-off-icon" : "switchOff material-symbols-outlined on-off-icon"}>
-                {el.device_OnOff ? "power_settings_new" : "power_settings_new"}
+                {/* {el.device_OnOff ? "power_settings_new" : "power_settings_new"} */}
+                power_settings_new
                 </span>
                 <span
                 id={el.id}

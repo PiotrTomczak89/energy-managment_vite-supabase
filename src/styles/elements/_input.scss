@@ -8,4 +8,39 @@ input , select {
     padding-left: 20px;
     color: $turquoise-lighter;
     font-family: $font-primary;
+    cursor: pointer;
+}
+
+
+
+
+.inputNumberContainer {
+    width: 16%;
+    display: flex;
+    @include tablet {
+        width: 15%;
+    }
+
+    .inputNumberSmall {
+        @include mobile {
+            font-size: 16px;
+        }
+        @include mobile-small {
+            font-size: 10px;
+        }
+    }
+}
+
+::-webkit-input-placeholder {
+    color: $turquoise-light;
+}
+::-webkit-inner-spin-button {
+    opacity: 5%;
+    background-color: $turquoise-dark;
+    //z-index: 10;
+    padding-right: 10px;
+    cursor: pointer;
+    @include tablet {
+        padding: 0px;
+    }
 }

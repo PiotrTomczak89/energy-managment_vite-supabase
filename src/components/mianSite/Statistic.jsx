@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { StoreProvider, useStoreState, useStoreActions } from "easy-peasy";
-import store from "../../store/store.jsx";
+//import store from "../../store/store.jsx";
 
 const Statistic = () => {
   const devicesFromDataBase = useStoreState((state) => state.deviceData);

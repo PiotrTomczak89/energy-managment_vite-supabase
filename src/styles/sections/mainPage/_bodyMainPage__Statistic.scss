@@ -12,6 +12,7 @@
     border-radius: 10px;
     box-shadow: 6px 6px 26px 2px $black;
     color: $turquoise-lighter;
+    z-index: 100;
     @include tablet {
         width: 20%;
         height: 80%;

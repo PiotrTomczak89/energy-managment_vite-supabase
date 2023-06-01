@@ -43,6 +43,14 @@ const store = createStore({
             return element;
         });
     }),
+    changePower: action((state,{table , id , value}) => {
+        state.deviceData = table.map(element => {
+            if (element.id == id) {
+                return {...element, device_power: value}
+            }
+            return element;
+        });
+    }), 
 });
 
 export default store;
