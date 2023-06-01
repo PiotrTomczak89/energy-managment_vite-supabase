@@ -26,9 +26,12 @@ const Statistic = () => {
     let itemPower = 0;
     let itemWorkingTime = 0;
     const powerTable = devicesFromDataBase.map((el , next) => {
-        itemPower = el.device_power / 1000
-        //count miliseconds from data base 1h = 3600000ms date-ftn
-        itemWorkingTime = Date.parse(`01 Jan 1970 ${el.device_working_time} UTC`) / 3600000
+        if (el.device_OnOff) {
+          itemPower = el.device_power / 1000
+          //count miliseconds from data base 1h = 3600000ms date-ftn
+          itemWorkingTime = Date.parse(`01 Jan 1970 ${el.device_working_time} UTC`) / 3600000
+          
+        }
         return itemPower * itemWorkingTime
     })
     setPower(powerTable.reduce((acc, next) => {
