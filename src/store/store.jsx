@@ -50,6 +50,15 @@ const store = createStore({
             }
             return element;
         });
+    }),
+    changeWorkingTime: action((state,{table , id , value}) => {
+        state.deviceData = table.map(element => {
+            if (element.id == id) {
+                console.log(value)
+                return {...element, device_working_time: value}
+            }
+            return element;
+        });
     }), 
 });
 
