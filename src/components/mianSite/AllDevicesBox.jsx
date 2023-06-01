@@ -6,7 +6,7 @@ import supabase from "../../servives/supabase";
 console.log(store);
 
 const AllDevicesBox = () => {
-  const devicesFromDataBase = useStoreState((state) => state.deviceData);
+  let devicesFromDataBase = useStoreState((state) => state.deviceData);
 
   const deleteDevice = useStoreActions((actions) => actions.deleteDevice);
 
@@ -15,6 +15,8 @@ const AllDevicesBox = () => {
   const switchStandBy = useStoreActions((actions) => actions.standByModyfier);
 
   const updatePower = useStoreActions((actions) => actions.changePower);
+
+  const [test , setTest] = useState(null)
 
   
 
@@ -108,6 +110,13 @@ const AllDevicesBox = () => {
     borderRadius: "0",
   };
 
+
+  //const devicesFromDataBase = useStoreState((state) => state.deviceData);
+
+  // useEffect(() => {
+  //   setTest(event.target.value)
+  // }, [test]);
+
   return (
     <div className="mainContent__Input__Box">
       <div className="mainContent__Input__Box--insideBox">
@@ -155,8 +164,7 @@ const AllDevicesBox = () => {
                   id={el.id}
                   onChange={handleUpdatePower}
                   min="1"
-                  placeholder={el.device_power}
-                  // value={el.device_power} !!!!!!!!!!!!!!!
+                  defaultValue={el.device_power} //!!!!!!!!!!!!!!!
                   style={smallInputStyle}
                   type="number"
                 />
@@ -169,7 +177,7 @@ const AllDevicesBox = () => {
                   onChange={handleUpdateWorkingTime}
                   min="1"
                   placeholder={el.device_working_time}
-                  //value={el.device_working_time} !!!!!!!!!!!!!!!
+                  defaultValue={el.device_working_time} //!!!!!!!!!!!!!!!
                   style={smallInputStyle}
                   type="time"
                 />
