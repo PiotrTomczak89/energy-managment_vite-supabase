@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { StoreProvider, useStoreState, useStoreActions } from "easy-peasy";
-//import store from "../../store/store.jsx";
+import { useStoreState } from "easy-peasy";
 
 const Statistic = () => {
   const devicesFromDataBase = useStoreState((state) => state.deviceData);
@@ -9,28 +8,15 @@ const Statistic = () => {
 
 
   const [power, setPower] = useState(0);
-  const [workingTime, setWorkingTime] = useState(null);
+  const [activeDevice, setActiveDevice] = useState(0)
 
-
-    //wrong way of count power
-  // useEffect(() => {
-  //   setPower(devicesFromDataBase.reduce((acc, next) => {
-  //       return acc + next.device_power;
-  //     }, 0) / 1000);
-  //   setWorkingTime(devicesFromDataBase.reduce((acc, next) => {
-  //       //count miliseconds from data base 1h = 3600000ms date-ftn
-  //       return acc + Date.parse(`01 Jan 1970 ${next.device_working_time} UTC`);
-  //     }, 0) / 3600000);
-  // }, [devicesFromDataBase]);
-
-
-  //NEEDS SOLUTION FOR STANDBY
+  //COUNT POWER
   useEffect(() => {
     let itemPower = 0;
     let itemWorkingTime = 0;
     let stanByPower = 0;
-    const powerTable = devicesFromDataBase.map((el , next) => {
-      console.log(el)
+
+    const powerTable = devicesFromDataBase.map((el) => {
         if (el.device_standBy && el.device_OnOff === false) {
           stanByPower = 5 / 1000 * 24;
         } else {
@@ -51,6 +37,14 @@ const Statistic = () => {
     }, 0))
   }, [devicesFromDataBase]);
 
+  //CHECK ACTIVE DEVICE
+  useEffect(() => {
+    const activeDeviceTable = devicesFromDataBase.filter((el) => {
+      return el.device_OnOff
+    })
+    setActiveDevice(activeDeviceTable.length)
+  }, [devicesFromDataBase]);
+
   return (
     <>
       {
@@ -63,7 +57,6 @@ const Statistic = () => {
         </div>
         <div className="statisticBox">
           <h2>Consumed power / MOUNTH</h2>
-          {/* <p>{devicesFromDataBase && testF(devicesFromDataBase)}</p> */}
           <p>{(power * daysInMounth).toFixed(2)}<sup>kWh</sup></p>
         </div>
         <div className="statisticBox">
@@ -71,8 +64,8 @@ const Statistic = () => {
           <p>{(power * daysInYear).toFixed(2)}<sup>kWh</sup></p>
         </div>
         <div className="statisticBox">
-          <h2>Quantity of devices</h2>
-          <p>{devicesFromDataBase.length}<sup>items</sup></p>
+          <h2>Quantity of devices /  *active / all</h2>
+          <p>{activeDevice} / {devicesFromDataBase.length}<sup>items</sup></p>
         </div>
       </section>
       }

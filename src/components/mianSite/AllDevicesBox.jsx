@@ -111,12 +111,6 @@ const AllDevicesBox = () => {
   };
 
 
-  //const devicesFromDataBase = useStoreState((state) => state.deviceData);
-
-  // useEffect(() => {
-  //   setTest(event.target.value)
-  // }, [test]);
-
   return (
     <div className="mainContent__Input__Box">
       <div className="mainContent__Input__Box--insideBox">
