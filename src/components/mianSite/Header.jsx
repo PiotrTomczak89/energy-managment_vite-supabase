@@ -30,7 +30,7 @@ const Header = () => {
     <>
       <header className="headerMain">
         <div className="logo">
-          <img src="src/assets/bulbLogo.svg"></img>
+          <img src="src/assets/bulbLogo.svg" className="st0 st1" alt="logo bulb"></img>
         </div>
         <div className="userInformation">
           <div className="userName">
@@ -40,7 +40,7 @@ const Header = () => {
           {/* //an idea about cost of kWh */}
           {/* <input placeholder="00000" type="number" style={{width: "10%" , height:"30px" , zIndex: "100"}}></input> */}
           <div className="userImage">
-            <span className="material-symbols-outlined avatar">
+            <span alt="avatar" className="material-symbols-outlined avatar">
               account_circle
             </span>
             <div className="logOut" onClick={handleLogout}>LogOut</div>

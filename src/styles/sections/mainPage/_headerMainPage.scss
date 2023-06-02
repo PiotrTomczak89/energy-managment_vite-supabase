@@ -55,11 +55,13 @@
             margin-right: 20px;
             .avatar {
                 font-size: 50px;
-                font-variation-settings: "wght" 100,;
+                color: $turquoise-lighter;
+                font-variation-settings: "wght" 100;
             }
             .logOut {
                 line-height: 5px;
                 margin-bottom: 15px;
+                color: $turquoise-light;
                 cursor: pointer;
             }
         }
