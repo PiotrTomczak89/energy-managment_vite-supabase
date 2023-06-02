@@ -20,3 +20,20 @@
     50%{width: 0;}
     100%{ width: 100; } 
   }
+
+
+
+  //rotate loading page
+  #bulbUp {
+    transform-origin: 307px 316px;
+    animation-name: rotateBulb;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotateBulb {
+  100% {
+      rotate: 360deg;
+  }
+}

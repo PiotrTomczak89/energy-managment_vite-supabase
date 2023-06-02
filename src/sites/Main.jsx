@@ -12,6 +12,7 @@ import { StoreProvider } from "easy-peasy";
 import Header from "../components/mianSite/Header";
 import Content from "../components/mianSite/Content";
 import Footer from "../components/mianSite/Footer";
+import Loading from "./Loading";
 
 function Main() {
   const [session, setSession] = useState(null);
@@ -86,7 +87,7 @@ function Main() {
   </form> */}
         </section>
       ) : (
-        <div>Loading.......</div>
+        <Loading />
       )}
     </>
   );
