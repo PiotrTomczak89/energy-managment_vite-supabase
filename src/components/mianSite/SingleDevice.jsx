@@ -4,7 +4,7 @@ import store from "../../store/store.jsx";
 import supabase from "../../servives/supabase.js";
 import { useDrag } from "react-dnd";
 
-const SingleDevice = ({ el }) => {
+const SingleDevice = ({ singleDevice }) => {
   let devicesFromDataBase = useStoreState((state) => state.deviceData);
 
   const deleteDevice = useStoreActions((actions) => actions.deleteDevice);
@@ -110,7 +110,7 @@ const SingleDevice = ({ el }) => {
   //DnD
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "singleDevice",
-    item: {id: el.id},
+    item: {id: singleDevice.id},
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -118,25 +118,25 @@ const SingleDevice = ({ el }) => {
   return (
     <>
       <li
-        key={el.id}
+        key={singleDevice.id}
         ref={drag}
         style={{ border: isDragging ? "2px solid red" : "" }}
         className="device"
       >
         <p style={{ display: "flex", alignItems: "center" }}>
           <span
-            id={el.id}
-            data-test={el.id}
+            id={singleDevice.id}
+            data-test={singleDevice.id}
             onClick={handleSwitchStandBy}
             className={
-              el.device_standBy
+              singleDevice.device_standBy
                 ? "switchOn material-symbols-outlined on-off-icon"
                 : "switchOff material-symbols-outlined on-off-icon"
             }
           >
             mode_standby
           </span>
-          {el.device_name}
+          {singleDevice.device_name}
         </p>
 
         {/* <p>{el.device_power}</p> */}
@@ -144,10 +144,10 @@ const SingleDevice = ({ el }) => {
         <p className="inputNumberContainer">
           <input
             className="inputNumberSmall"
-            id={el.id}
+            id={singleDevice.id}
             onChange={handleUpdatePower}
             min="1"
-            defaultValue={el.device_power} //!!!!!!!!!!!!!!!
+            defaultValue={singleDevice.device_power} //!!!!!!!!!!!!!!!
             style={smallInputStyle}
             type="number"
           />
@@ -156,22 +156,22 @@ const SingleDevice = ({ el }) => {
         <p>
           <input
             className="inputNumberSmall"
-            id={el.id}
+            id={singleDevice.id}
             onChange={handleUpdateWorkingTime}
             min="1"
-            placeholder={el.device_working_time}
-            defaultValue={el.device_working_time} //!!!!!!!!!!!!!!!
+            placeholder={singleDevice.device_working_time}
+            defaultValue={singleDevice.device_working_time} //!!!!!!!!!!!!!!!
             style={smallInputStyle}
             type="time"
           />
         </p>
         {/* <p>{el.device_stand_OnOff}</p> */}
         <span
-          id={el.id}
-          data-test={el.id}
+          id={singleDevice.id}
+          data-test={singleDevice.id}
           onClick={handleSwitchOnOff}
           className={
-            el.device_OnOff
+            singleDevice.device_OnOff
               ? "switchOn material-symbols-outlined on-off-icon"
               : "switchOff material-symbols-outlined on-off-icon"
           }
@@ -179,7 +179,7 @@ const SingleDevice = ({ el }) => {
           power_settings_new
         </span>
         <span
-          id={el.id}
+          id={singleDevice.id}
           onClick={handleDelete}
           className="material-symbols-outlined delete-icon"
         >

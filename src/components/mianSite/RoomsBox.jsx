@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import supabase from "../../servives/supabase";
 import { useDrop } from "react-dnd";
+import RoomHeader from "./RoomHeader";
+import RoomBody from "./RoomBody";
 
 const RoomsBox = () => {
+  
   let devicesFromDataBase = useStoreState((state) => state.deviceData);
 
   const sessionLogin = useStoreState((state) => {
@@ -16,13 +19,14 @@ const RoomsBox = () => {
 
   const [rooms, setRooms] = useState(null);
   const [errorName, setErrorName] = useState(null);
+  const [deleteRefresh, setDeleteRefresh] = useState(null);
 
 
 const [{isOver} , drop] = useDrop(() => ({
   accept: "singleDevice",
   drop: (item) => handleUpdateLocation(item),
   collect: (monitor) => ({
-    isOver: !!monitor.isOver(),
+  isOver: !!monitor.isOver(),
   }),
 }))
 
@@ -33,7 +37,8 @@ const [{isOver} , drop] = useDrop(() => ({
       getDataFromDataBase();
     }
     alreadyMounted = true;
-  }, [rooms]);
+    setDeleteRefresh(null)
+  }, [deleteRefresh]);
 
   //download filtred data from supabase (filter equal to user login)
   const getDataFromDataBase = async () => {
@@ -81,22 +86,20 @@ const [{isOver} , drop] = useDrop(() => ({
   };
 
   const handleDelete = async (event) => {
+    console.log(event.target.id)
     const { error } = await supabase
       .from("roomTable")
       .delete()
       .eq("id", event.target.id);
 
     if (!error) {
-      setRooms(
-        rooms.map((el) => {
-          return el !== event.target.id;
-        })
-      );
+      setDeleteRefresh(true)
+      setRooms(rooms);
     }
   };
 
   const handleUpdateLocation = async (item) => {
-    console.log(item)
+    console.log(item , "FROMhANDLEuPDATElOCATION")
     const { data, error } = await supabase
       .from("deviceTable")
       .update({ room_name: "ABCtest" })
@@ -112,11 +115,10 @@ const [{isOver} , drop] = useDrop(() => ({
     //console.log(id)
   };
 
-
-
+  console.log(rooms)
 
   return (
-    <div className="mainContent__Rooms">
+    <div className="mainContent__Rooms" ref={drop}>
       <form onSubmit={handleAddRoom} onChange={cleanError}>
         <div className="formRoom">
           <input placeholder={"Room name"} id="roomName" type="text" />
@@ -127,57 +129,15 @@ const [{isOver} , drop] = useDrop(() => ({
         </button>
       </form>
       <div className="mainContent__Rooms__Container">
-        {rooms
-          ? rooms.map((el) => {
+        {rooms && rooms.map((singleRoom) => {
               return (
-                <div key={el.id} className="mainContent__Room">
-                  <div className="mainContent__Room__Header">
-                    <div>{el.room_name}</div>
-                    <span
-                      id={el.id}
-                      onClick={handleDelete}
-                      className={
-                        "switchOn material-symbols-outlined on-off-icon"
-                      }
-                    >
-                      delete
-                    </span>
-                  </div>
-                  <ul className="mainContent__Room__Body" ref={drop}>
-                    {devicesFromDataBase.map((el) => (
-                      <li key={el.id} className="device">
-                        <span
-                          id={el.id}
-                          data-test={el.id}
-                          className={
-                            el.device_standBy
-                              ? "switchOn material-symbols-outlined on-off-icon"
-                              : "switchOff material-symbols-outlined on-off-icon"
-                          }
-                        >
-                          mode_standby
-                        </span>
-                        <p>{el.device_name}</p>
-                        <p>{el.device_power}</p>
-                        <span
-                          id={el.id}
-                          data-test={el.id}
-                          className={
-                            el.device_OnOff
-                              ? "switchOn material-symbols-outlined on-off-icon"
-                              : "switchOff material-symbols-outlined on-off-icon"
-                          }
-                        >
-                          power_settings_new
-                        </span>
-                        <p>{el.device_OnOff}</p>
-                      </li>
-                    ))}{" "}
-                  </ul>
+                <div key={singleRoom.id} className="mainContent__Room" >
+                  <RoomHeader singleRoom={singleRoom} handleDelete={handleDelete}/>
+                  <RoomBody devicesFromDataBase={devicesFromDataBase} singleRoom={singleRoom}/>
                 </div>
               );
             })
-          : "err"}
+          }
       </div>
     </div>
   );

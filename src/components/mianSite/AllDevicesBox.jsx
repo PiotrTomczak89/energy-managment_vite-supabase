@@ -148,8 +148,8 @@ const AllDevicesBox = () => {
           </header>
         </div>
           <ul className="deviceContainer">
-          {devicesFromDataBase && devicesFromDataBase.map((el) => (
-            <SingleDevice key={el.id} el={el}/>
+          {devicesFromDataBase && devicesFromDataBase.map((singleDevice) => (
+            <SingleDevice key={singleDevice.id} singleDevice={singleDevice}/>
           ))}
         </ul>
       </div>
