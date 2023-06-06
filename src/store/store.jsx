@@ -68,7 +68,21 @@ const store = createStore({
             }
             return element;
         });
-    }), 
+    }),
+    changeDeviceLocation: action((state,{table , id , value}) => {
+        // state.deviceData = table.map(element => {
+        //     if (element.id == id) {
+        //         console.log(value , "changeDeviceLocation")
+        //         return {...element, room_name: value}
+        //     }
+        //     return element;
+        // });
+        state.deviceData.forEach((el) => {
+            console.log(el.room_name)
+        })
+        // console.log(value , "changeDeviceLocation")
+        // console.log("test" , value)
+    }),
 });
 
 export default store;

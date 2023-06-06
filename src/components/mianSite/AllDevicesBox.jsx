@@ -1,114 +1,129 @@
+import SingleDevice from "./SingleDevice.jsx";
+
 import { StoreProvider, useStoreState, useStoreActions } from "easy-peasy";
 import { useEffect, useState } from "react";
 import store from "../../store/store.jsx";
 import supabase from "../../servives/supabase";
+import { useDrag } from "react-dnd";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+
+
 
 console.log(store);
 
 const AllDevicesBox = () => {
   let devicesFromDataBase = useStoreState((state) => state.deviceData);
+  // let devicesFromDataBase = useStoreState((state) => state.deviceData);
 
-  const deleteDevice = useStoreActions((actions) => actions.deleteDevice);
+  // const deleteDevice = useStoreActions((actions) => actions.deleteDevice);
 
-  const switchOnOff = useStoreActions((actions) => actions.turnOnOff);
+  // const switchOnOff = useStoreActions((actions) => actions.turnOnOff);
 
-  const switchStandBy = useStoreActions((actions) => actions.standByModyfier);
+  // const switchStandBy = useStoreActions((actions) => actions.standByModyfier);
 
-  const updatePower = useStoreActions((actions) => actions.changePower);
+  // const updatePower = useStoreActions((actions) => actions.changePower);
 
-  const [test , setTest] = useState(null)
+  // const [test , setTest] = useState(null)
 
-  
+  // const [{isDragging} , drag] = useDrag(() => ({
+  //   type: "image",
+  //   collect: (monitor) => ({
+  //     isDragging: !!monitor.isDragging(),
+  //   })
 
-  const updateWorkingTime = useStoreActions(
-    (actions) => actions.changeWorkingTime
-  );
+  // }))
 
-  const handleDelete = async (event) => {
-    const { error } = await supabase
-      .from("deviceTable")
-      .delete()
-      .eq("id", event.target.id);
+  // const updateWorkingTime = useStoreActions(
+  //   (actions) => actions.changeWorkingTime
+  // );
 
-    if (!error) {
-      deleteDevice({ table: devicesFromDataBase, id: event.target.id });
-    }
-  };
+  // const handleDelete = async (event) => {
+  //   const { error } = await supabase
+  //     .from("deviceTable")
+  //     .delete()
+  //     .eq("id", event.target.id);
 
-  const handleSwitchOnOff = async (event) => {
-    const { data, error } = await supabase
-      .from("deviceTable")
-      .update({
-        device_OnOff:
-          event.target.className ===
-          "switchOn material-symbols-outlined on-off-icon"
-            ? false
-            : true,
-      })
-      .eq("id", event.target.id);
+  //   if (!error) {
+  //     deleteDevice({ table: devicesFromDataBase, id: event.target.id });
+  //   }
+  // };
 
-    if (!error) {
-      switchOnOff({ table: devicesFromDataBase, id: event.target.id });
-    }
-  };
+  // const handleSwitchOnOff = async (event) => {
+  //   const { data, error } = await supabase
+  //     .from("deviceTable")
+  //     .update({
+  //       device_OnOff:
+  //         event.target.className ===
+  //         "switchOn material-symbols-outlined on-off-icon"
+  //           ? false
+  //           : true,
+  //     })
+  //     .eq("id", event.target.id);
 
-  const handleSwitchStandBy = async (event) => {
-    const { data, error } = await supabase
-      .from("deviceTable")
-      .update({
-        device_standBy:
-        event.target.className ===
-        "switchOn material-symbols-outlined on-off-icon"
-          ? false
-          : true,
-      })
-      .eq("id", event.target.id);
+  //   if (!error) {
+  //     switchOnOff({ table: devicesFromDataBase, id: event.target.id });
+  //   }
+  // };
 
-    if (!error) {
-      switchStandBy({ table: devicesFromDataBase, id: event.target.id });
-    }
-  };
+  // const handleSwitchStandBy = async (event) => {
+  //   const { data, error } = await supabase
+  //     .from("deviceTable")
+  //     .update({
+  //       device_standBy:
+  //       event.target.className ===
+  //       "switchOn material-symbols-outlined on-off-icon"
+  //         ? false
+  //         : true,
+  //     })
+  //     .eq("id", event.target.id);
 
-  const handleUpdatePower = async (event) => {
-    const { data, error } = await supabase
-      .from("deviceTable")
-      .update({ device_power: event.target.value })
-      .eq("id", event.target.id);
+  //   if (!error) {
+  //     switchStandBy({ table: devicesFromDataBase, id: event.target.id });
+  //   }
+  // };
 
-    if (!error) {
-      updatePower({
-        table: devicesFromDataBase,
-        id: event.target.id,
-        value: event.target.value,
-      });
-    }
-  };
+  // const handleUpdatePower = async (event) => {
+  //   const { data, error } = await supabase
+  //     .from("deviceTable")
+  //     .update({ device_power: event.target.value })
+  //     .eq("id", event.target.id);
 
-  const handleUpdateWorkingTime = async (event) => {
-    const { data, error } = await supabase
-      .from("deviceTable")
-      .update({ device_working_time: event.target.value })
-      .eq("id", event.target.id);
+  //   if (!error) {
+  //     updatePower({
+  //       table: devicesFromDataBase,
+  //       id: event.target.id,
+  //       value: event.target.value,
+  //     });
+  //   }
+  // };
 
-    if (!error) {
-      updateWorkingTime({
-        table: devicesFromDataBase,
-        id: event.target.id,
-        value: event.target.value,
-      });
-    }
-  };
+  // const handleUpdateWorkingTime = async (event) => {
+  //   const { data, error } = await supabase
+  //     .from("deviceTable")
+  //     .update({ device_working_time: event.target.value })
+  //     .eq("id", event.target.id);
 
-  const smallInputStyle = {
-    height: "70%",
-    width: "100%",
-    textAlign: "left",
-    border: "0px",
-    background: "transparent",
-    boxShadow: "0 0 0 0",
-    paddingLeft: "2px",
-    borderRadius: "0",
-  };
+  //   if (!error) {
+  //     updateWorkingTime({
+  //       table: devicesFromDataBase,
+  //       id: event.target.id,
+  //       value: event.target.value,
+  //     });
+  //   }
+  // };
+
+  // const smallInputStyle = {
+  //   height: "70%",
+  //   width: "100%",
+  //   textAlign: "left",
+  //   border: "0px",
+  //   background: "transparent",
+  //   boxShadow: "0 0 0 0",
+  //   paddingLeft: "2px",
+  //   borderRadius: "0",
+  // };
 
 
   return (
@@ -132,71 +147,9 @@ const AllDevicesBox = () => {
             </ul>
           </header>
         </div>
-        <ul className="deviceContainer">
-          {devicesFromDataBase.map((el) => (
-            <li key={el.id} className="device">
-
-              <p style={{display:"flex" , alignItems:"center"}}>
-                <span
-                id={el.id}
-                data-test={el.id}
-                onClick={handleSwitchStandBy}
-                className={
-                  el.device_standBy
-                    ? "switchOn material-symbols-outlined on-off-icon"
-                    : "switchOff material-symbols-outlined on-off-icon"
-                }
-              >mode_standby</span>
-              {el.device_name}
-              </p>
-              
-              {/* <p>{el.device_power}</p> */}
-
-              <p className="inputNumberContainer">
-                <input
-                  className="inputNumberSmall"
-                  id={el.id}
-                  onChange={handleUpdatePower}
-                  min="1"
-                  defaultValue={el.device_power} //!!!!!!!!!!!!!!!
-                  style={smallInputStyle}
-                  type="number"
-                />
-              </p>
-              {/* <p>{el.device_working_time}</p> */}
-              <p>
-                <input
-                  className="inputNumberSmall"
-                  id={el.id}
-                  onChange={handleUpdateWorkingTime}
-                  min="1"
-                  placeholder={el.device_working_time}
-                  defaultValue={el.device_working_time} //!!!!!!!!!!!!!!!
-                  style={smallInputStyle}
-                  type="time"
-                />
-              </p>
-              {/* <p>{el.device_stand_OnOff}</p> */}
-              <span
-                id={el.id}
-                data-test={el.id}
-                onClick={handleSwitchOnOff}
-                className={
-                  el.device_OnOff
-                    ? "switchOn material-symbols-outlined on-off-icon"
-                    : "switchOff material-symbols-outlined on-off-icon"
-                }
-              >
-                power_settings_new
-              </span>
-              <span
-                id={el.id}
-                onClick={handleDelete}
-                className="material-symbols-outlined delete-icon"
-              >
-                delete
-              </span>
-            </li>
+          <ul className="deviceContainer">
+          {devicesFromDataBase && devicesFromDataBase.map((el) => (
+            <SingleDevice key={el.id} el={el}/>
           ))}
         </ul>
       </div>

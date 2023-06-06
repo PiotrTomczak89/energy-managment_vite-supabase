@@ -5,6 +5,8 @@ import { useEffect , useState } from "react";
 import { useStoreActions , useStoreState } from "easy-peasy";
 import supabase from "../../servives/supabase";
 import store from "../../store/store.jsx";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 //useStoreState - read data
 //useStoreAction - save data
@@ -49,7 +51,10 @@ getDataFromDataBase()
         {/* section left bar */}
         <Statistic/>
         {/* section right bar  */}
+        <DndProvider backend={HTML5Backend}>
         <Data />
+        </DndProvider>
+        
       </section>
   );
 };
