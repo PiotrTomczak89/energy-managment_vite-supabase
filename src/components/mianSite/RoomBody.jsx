@@ -46,9 +46,14 @@ const RoomBody = ({devicesFromDataBase}) => {
 // }
 
 
+const devicesInSeparateBasket = devicesFromDataBase.filter((item) => item.room_name === "ROOM1")
+
+console.log(devicesInSeparateBasket);
+
+
   return (
     <ul className="mainContent__Room__Body">
-            {devicesFromDataBase.map((el) => (
+            {devicesInSeparateBasket.map((el) => (
         <li key={el.id} className="device">
           <span
             id={el.id}
@@ -75,7 +80,6 @@ const RoomBody = ({devicesFromDataBase}) => {
             power_settings_new
           </span>
           <p>{el.device_OnOff}</p>
-          <span style={{display:"none"}}>{el.room_name}</span>
           <span
           id={el.id}
           onClick={handleDeleteFromSeparateBasket}
@@ -84,9 +88,7 @@ const RoomBody = ({devicesFromDataBase}) => {
           delete
         </span>
         </li>
-      )).filter((el) => {
-        return el.props.children[5].props.children === "ROOM1"
-      })}
+      ))}
     </ul>
   );
 };
