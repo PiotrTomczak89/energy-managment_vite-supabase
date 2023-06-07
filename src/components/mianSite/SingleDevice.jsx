@@ -108,14 +108,12 @@ const SingleDevice = ({ singleDevice }) => {
   //DnD
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "singleDevice",
-    item: {id: singleDevice.id},
+    item: {id: singleDevice.id,
+    tab: devicesFromDataBase,
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
-    end: (item, monitor) => {
-      monitor.getDropResult();
-      // Dodaj odpowiednie działania po zakończeniu przeciągania
-    },
   }));
   return (
     <>

@@ -2,7 +2,7 @@ import supabase from "../../servives/supabase";
 import {useState , useEffect} from "react"
 import { useStoreActions, useStoreState } from "easy-peasy";
 
-const RoomBody = ({devicesFromDataBase , singleRoom , item}) => {
+const RoomBody = ({devicesFromDataBase}) => {
 
   
   const updateDeviceLocation = useStoreActions(
@@ -84,7 +84,7 @@ const RoomBody = ({devicesFromDataBase , singleRoom , item}) => {
           delete
         </span>
         </li>
-      )).filter((el , index, arr) => {
+      )).filter((el) => {
         return el.props.children[5].props.children === "ROOM1"
       })}
     </ul>

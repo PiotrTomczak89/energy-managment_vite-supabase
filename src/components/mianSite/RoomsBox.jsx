@@ -3,10 +3,13 @@ import supabase from "../../servives/supabase";
 import { useDrop } from "react-dnd";
 import RoomHeader from "./RoomHeader";
 import RoomBody from "./RoomBody";
+import { useEffect , useState } from "react";
 
 const RoomsBox = () => {
   
-  let devicesFromDataBase = useStoreState((state) => state.deviceData);
+  const devicesFromDataBase = useStoreState((state) => state.deviceData);
+  console.log(devicesFromDataBase)
+  const [test, setTest] = useState(devicesFromDataBase)
 
   // const sessionLogin = useStoreState((state) => {
   //   return state.sessionLogin;
@@ -22,7 +25,6 @@ const RoomsBox = () => {
   collect: (monitor) => ({
   isOver: monitor.isOver(),
   }),
-  
 }))
 
 
@@ -34,12 +36,12 @@ const RoomsBox = () => {
 
     if (!error) {
       updateDeviceLocation({
-        table: devicesFromDataBase,
+        table: item.tab,
         id: parseInt(item.id),
         value: "ROOM1",
       });
     }
-    console.log(parseInt(item.id))
+    console.log(item.tab) //EMPTY ARRAY
   };
 
 
