@@ -22,13 +22,11 @@ const RoomsBox = () => {
   const [deleteRefresh, setDeleteRefresh] = useState(null);
 
 
-const [{isOver} , drop] = useDrop(() => ({
-  accept: "singleDevice",
-  drop: (item) => handleUpdateLocation(item),
-  collect: (monitor) => ({
-  isOver: !!monitor.isOver(),
-  }),
-}))
+
+
+
+//const dropResult = dropResult.dropResult;
+
 
   let alreadyMounted = false;
 
@@ -82,7 +80,6 @@ const [{isOver} , drop] = useDrop(() => ({
       setRooms((prev) => [...prev, data[0]]);
     }
 
-    //console.log(deviceName.value , devicePower.value , deviceWorkingTime.value , deviceStandBy.value)
   };
 
   const handleDelete = async (event) => {
@@ -98,8 +95,25 @@ const [{isOver} , drop] = useDrop(() => ({
     }
   };
 
-  const handleUpdateLocation = async (item) => {
-    console.log(item , "FROMhANDLEuPDATElOCATION")
+  const [{isOver, canDrop , dropResult} , drop ] = useDrop(() => ({
+  accept: "singleDevice",
+  drop: (item , monitor) => handleUpdateLocation(item , monitor),
+  collect: (monitor) => ({
+  isOver: monitor.isOver(),
+  canDrop: monitor.canDrop(),
+  dropResult: monitor.getDropResult()
+  }),
+  
+}))
+
+  const handleUpdateLocation = async (item , monitor) => {
+    console.log(item , "id of draged item");
+    const dropResult = monitor.getDropResult();
+    const dropIsOver = monitor.isOver();
+    const canDrop = monitor.canDrop();
+    console.log('Drop result:', dropResult); //RESULT = null after droping
+    console.log('dropIsOver:', dropIsOver); 
+    console.log('canDrop:', canDrop); 
     const { data, error } = await supabase
       .from("deviceTable")
       .update({ room_name: "ABCtest" })
@@ -112,8 +126,8 @@ const [{isOver} , drop] = useDrop(() => ({
         value: "ABCtest",
       });
     }
-    //console.log(id)
   };
+
 
   console.log(rooms)
 

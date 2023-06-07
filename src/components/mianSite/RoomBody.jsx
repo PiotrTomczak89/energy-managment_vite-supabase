@@ -1,7 +1,7 @@
 
 const RoomBody = ({devicesFromDataBase , singleRoom}) => {
 
-    //console.log(singleRoom)
+   //console.log(singleRoom)
   return (
     <ul className="mainContent__Room__Body">
       {/* {devicesFromDataBase.map((el) => (
