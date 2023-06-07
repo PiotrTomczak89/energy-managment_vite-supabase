@@ -15,8 +15,6 @@ const SingleDevice = ({ singleDevice }) => {
 
   const updatePower = useStoreActions((actions) => actions.changePower);
 
-  const [test, setTest] = useState(null);
-
   const updateWorkingTime = useStoreActions(
     (actions) => actions.changeWorkingTime
   );
@@ -114,6 +112,10 @@ const SingleDevice = ({ singleDevice }) => {
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    end: (item, monitor) => {
+      monitor.getDropResult();
+      // Dodaj odpowiednie działania po zakończeniu przeciągania
+    },
   }));
   return (
     <>

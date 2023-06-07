@@ -70,18 +70,14 @@ const store = createStore({
         });
     }),
     changeDeviceLocation: action((state,{table , id , value}) => {
-        // state.deviceData = table.map(element => {
-        //     if (element.id == id) {
-        //         console.log(value , "changeDeviceLocation")
-        //         return {...element, room_name: value}
-        //     }
-        //     return element;
-        // });
-        state.deviceData.forEach((el) => {
-            console.log(el.room_name)
-        })
-        // console.log(value , "changeDeviceLocation")
-        // console.log("test" , value)
+        console.log(table , id , value)
+        state.deviceData = table.map(element => {
+            if (parseInt(element.id) === parseInt(id)) {
+                console.log(value , "changeDeviceLocation")
+                return {...element, room_name: value}
+            }
+            return element;
+        });
     }),
 });
 
