@@ -1,97 +1,110 @@
 import supabase from "../../servives/supabase";
-import {useState , useEffect} from "react"
 import { useStoreActions, useStoreState } from "easy-peasy";
+import { useEffect , useState } from "react";
 
-const RoomBody = ({devicesFromDataBase}) => {
+const RoomBody = () => {
+  let devicesFromDataBase = useStoreState((state) => state.deviceData);
 
-  
   const updateDeviceLocation = useStoreActions(
     (actions) => actions.changeDeviceLocation
   );
 
-//const dropResult = dropResult.dropResult;
-
-
-
-  
   const handleDeleteFromSeparateBasket = async (event) => {
-    console.log(event.target.id)
+    console.log(event.target.id);
     const { data, error } = await supabase
       .from("deviceTable")
       .update({ room_name: "" })
       .eq("id", event.target.id);
 
     if (!error) {
-      
       updateDeviceLocation({
         table: devicesFromDataBase,
         id: parseInt(event.target.id),
         value: "",
       });
     }
-    console.log(parseInt(event.target.id))
   };
 
-//   const { data, error } = await supabase
-//   .from("deviceTable")
-//   .update({ device_working_time: event.target.value })
-//   .eq("id", event.target.id);
 
-// if (!error) {
-//   updateWorkingTime({
-//     table: devicesFromDataBase,
-//     id: event.target.id,
-//     value: event.target.value,
-//   });
-// }
+ //START --->
+  //Solution for updating data start
+  // const importDeviceFromDataBase = useStoreActions(
+  //   (actions) => actions.importDeviceData
+  // );
 
+  // //read data as user email from storage
+  // const sessionLogin = useStoreState((state) => {
+  //   return state.sessionLogin;
+  // });
 
-const devicesInSeparateBasket = devicesFromDataBase.filter((item) => item.room_name === "ROOM1")
+  // //download filtred data from supabase (filter equal to user login)
+  // const getDataFromDataBase = async () => {
+  //   let { data, error } = await supabase
+  //     .from("deviceTable")
+  //     .select("*")
+  //     .eq("author", sessionLogin);
 
-console.log(devicesInSeparateBasket);
+  //   if (!error) {
+  //     importDeviceFromDataBase(data);
+  //   }
+  // };
 
+  //Solution for updating data end <---END
+
+  const devicesInSeparateBasket = devicesFromDataBase.filter(
+    (item) => item.room_name === "ROOM1"
+  );
 
   return (
     <ul className="mainContent__Room__Body">
-            {devicesInSeparateBasket.map((el) => (
-        <li key={el.id} className="device">
+      {devicesInSeparateBasket.length > 0 ?
+      devicesInSeparateBasket.map((singleDevice) => (
+        <li key={singleDevice.id} className="device">
           <span
-            id={el.id}
-            data-test={el.id}
+            id={singleDevice.id}
             className={
-              el.device_standBy
+              singleDevice.device_standBy
                 ? "switchOn material-symbols-outlined on-off-icon"
                 : "switchOff material-symbols-outlined on-off-icon"
             }
           >
             mode_standby
           </span>
-          <p>{el.device_name}</p>
-          <p>{el.device_power}</p>
+          <p>{singleDevice.device_name}</p>
+          <p>{singleDevice.device_power}</p>
           <span
-            id={el.id}
-            data-test={el.id}
+            id={singleDevice.id}
             className={
-              el.device_OnOff
+              singleDevice.device_OnOff
                 ? "switchOn material-symbols-outlined on-off-icon"
                 : "switchOff material-symbols-outlined on-off-icon"
             }
           >
             power_settings_new
           </span>
-          <p>{el.device_OnOff}</p>
+          <p>{singleDevice.device_OnOff}</p>
           <span
-          id={el.id}
-          onClick={handleDeleteFromSeparateBasket}
-          className="material-symbols-outlined delete-icon"
-        >
-          delete
-        </span>
+            id={singleDevice.id}
+            onClick={handleDeleteFromSeparateBasket}
+            className="material-symbols-outlined delete-icon"
+          >
+            delete
+          </span>
         </li>
-      ))}
+      ))
+      :
+      <div style={{height:"100%" , display:"flex" , flexDirection:"column" , alignItems:"center" , justifyContent:"center" , color:"gray" , textAlign:"center"}}>
+      <h1>Drop device here</h1>
+      <p>You can drag and drop single device from Devices Basket , to check them in Separate Basket</p>
+      <ul>
+        <li>More than one device can be added</li>
+        <li>You can delete Sindle Device from this basket</li>
+        <li>On/Off only allowed in General Basket</li>
+      </ul>
+      </div>}
+      
     </ul>
   );
 };
-
 
 export default RoomBody;

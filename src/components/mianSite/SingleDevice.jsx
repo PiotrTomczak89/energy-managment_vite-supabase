@@ -112,7 +112,7 @@ const SingleDevice = ({ singleDevice }) => {
     tab: devicesFromDataBase,
     },
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   }));
   return (
