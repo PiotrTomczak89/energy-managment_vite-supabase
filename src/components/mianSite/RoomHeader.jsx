@@ -50,11 +50,11 @@ const RoomHeader = () => {
 
   return (
     <div className="mainContent__Room__Header">
-      <header>Separate Basket</header>
+      <h3>Separate Basket</h3>
       <div>
-      <div>{power.toFixed(2)}</div>
-      <div>{(power * daysInMounth).toFixed(2)}</div>
-      <div>{(power * daysInYear).toFixed(2)}</div>
+      <p>{power.toFixed(2)} <sup>kWh/DAY</sup></p>
+      <p>{(power * daysInMounth).toFixed(2)} <sup>kWh/DAY</sup></p>
+      <p>{(power * daysInYear).toFixed(2)} <sup>kWh/DAY</sup></p>
       </div>
     </div>
   );
