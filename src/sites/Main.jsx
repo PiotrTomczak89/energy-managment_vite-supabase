@@ -11,7 +11,7 @@ import { StoreProvider } from "easy-peasy";
 
 import Header from "../components/mianSite/Header";
 import Content from "../components/mianSite/Content";
-import Footer from "../components/mianSite/Footer";
+import Fotter from "../components/mianSite/Footer";
 import Loading from "./Loading";
 
 function Main() {
@@ -77,7 +77,7 @@ function Main() {
             <Header />
             <Content data={session} />
           </StoreProvider>
-          <Footer />
+          <Fotter />
           {/* <h1>Main</h1>
   <button onClick={handleLogout}>LogOut</button>
   <div>Data from user</div>

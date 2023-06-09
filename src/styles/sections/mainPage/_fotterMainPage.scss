@@ -1,0 +1,17 @@
+footer {
+    width: 80%;
+    min-height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: $gray-middle;
+    @include tablet {
+        width: 100%;
+    }
+    h2 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
