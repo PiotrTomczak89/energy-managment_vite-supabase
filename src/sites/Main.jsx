@@ -1,8 +1,3 @@
-//template login
-//test-acc-piotr@test2
-//template password
-//test-acc-piotr@test2
-
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import supabase from "../servives/supabase";
@@ -28,12 +23,6 @@ function Main() {
     alreadyMounted = true;
   }, []);
 
-  // useEffect(() => {
-  //   if (session) {
-  //     getDataFromDataBase()
-  //   }
-  // }, [session])
-
   const getSession = async () => {
     const { data, error } = await supabase.auth.getSession();
     if (!data.session) {
@@ -41,33 +30,7 @@ function Main() {
       return;
     }
     setSession(data);
-    console.log(data.session.user.email);
-    
   };
-
-  
-
-//   const getDataFromDataBase = async () => {
-//     let { data , error } = await supabase
-//   .from('deviceTable')
-//   .select("*")
-
-//   if (!error) {
-//     console.log(data)
-//   }
-
-// }
-
-  const handleLogout = async () => {
-    let { error } = await supabase.auth.signOut();
-    if (!error) {
-      navigation("/signin");
-    }
-  };
-
-  if (!session) {
-    console.log("test");
-  }
 
   return (
     <>
@@ -78,13 +41,6 @@ function Main() {
             <Content data={session} />
           </StoreProvider>
           <Fotter />
-          {/* <h1>Main</h1>
-  <button onClick={handleLogout}>LogOut</button>
-  <div>Data from user</div>
-  <form>
-    <input type="text" />
-    <button>Send</button>
-  </form> */}
         </section>
       ) : (
         <Loading />
@@ -92,21 +48,5 @@ function Main() {
     </>
   );
 }
-
-{/* <section className="mainContainer">
-<StoreProvider store={store}>
-  <Header />
-  {session && <Content data={session} />}
-</StoreProvider>
-<Footer />
-<h1>Main</h1>
-<button onClick={handleLogout}>LogOut</button>
-<div>Data from user</div>
-<form>
-<input type="text" />
-<button>Send</button>
-</form>
-</section> */}
-
 
 export default Main;
