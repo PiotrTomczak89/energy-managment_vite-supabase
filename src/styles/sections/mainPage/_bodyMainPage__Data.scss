@@ -43,7 +43,7 @@
         padding: 0;
     }
     &__Form {
-        width: 60%;
+        width: 50%;
         max-height: 400px;
         display: flex;
         flex-wrap: wrap;
@@ -98,7 +98,7 @@
     }
 
     &__Box {
-        width: 40%;
+        width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -125,7 +125,7 @@
                     color: $turquoise-lighter;
                     ul {
                         display: flex;
-                        justify-content: space-between;
+                        //justify-content: space-between;
                         font-size: 16px;
                         li {
                             color: $turquoise-light;
@@ -133,14 +133,16 @@
                             list-style: none;
                         }
                         :nth-child(1) {
-                            width: 30%;
+                            width: 35%;
                         }
                         :nth-child(2) {
-                            width: 15%;
+                            width: 22%;
                         }
                         :nth-child(3) {
-                            width: 30%;
-                            padding-left: 20px;
+                            width: 22%;
+                        }
+                        :nth-child(4) {
+                            width: 15%;
                         }
                     }
                     }
