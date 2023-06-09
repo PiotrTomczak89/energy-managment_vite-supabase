@@ -45,7 +45,7 @@ const RoomsBox = () => {
       <div className="mainContent__Rooms__Container">
                 <div className="mainContent__Room"
                 ref={drop}
-                style={{ opacity: isOver ? "50%" : "" , border: isOver ? "3px dashed #528498" : "" , transition:"0.5s", boxShadow: canDrop ? "2px 2px 22px #528498" : ""}}
+                style={{ opacity: isOver ? "80%" : "" , border: isOver ? "3px dashed #528498" : "" , transition:"0.5s", boxShadow: canDrop ? "2px 2px 22px #528498" : ""}}
                 >
                   <RoomHeader/>
                   <RoomBody />
