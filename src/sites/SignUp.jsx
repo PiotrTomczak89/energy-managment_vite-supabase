@@ -5,7 +5,7 @@ import { useState } from "react";
 import FormLog from "../components/FormLog";
 import BulbImage from "../components/BulbImage";
 
-import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+import bulbOn from "../assets/bulb0n.jpeg";
 
 
 function SignUp() {
