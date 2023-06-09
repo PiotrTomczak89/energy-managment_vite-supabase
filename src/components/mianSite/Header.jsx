@@ -1,20 +1,16 @@
 import { useStoreState } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
-import supabase from "../../servives/supabase"
-//import store from "./../../store/store.jsx"
-import bulbLogo from "../../assets/bulbLogo.svg"
+import supabase from "../../servives/supabase";
+import bulbLogo from "../../assets/bulbLogo.svg";
 
 const Header = () => {
   const sessionLogin = useStoreState((state) => {
     return state.sessionLogin;
   });
-  //   const test = useStoreState((state) => {
-  //     return state.deviceData
-  // })
-  const att = sessionLogin.lastIndexOf("@");
-  //console.log(test)
-  const navigation = useNavigate();
 
+  const att = sessionLogin.lastIndexOf("@");
+
+  const navigation = useNavigate();
 
   const handleLogout = async () => {
     let { error } = await supabase.auth.signOut();
@@ -22,10 +18,6 @@ const Header = () => {
       navigation("/signin");
     }
   };
-
-  // if (!sessionLogin) {
-  //   console.log("test");
-  // }
 
   return (
     <>
@@ -44,7 +36,9 @@ const Header = () => {
             <span alt="avatar" className="material-symbols-outlined avatar">
               account_circle
             </span>
-            <div className="logOut" onClick={handleLogout}>LogOut</div>
+            <div className="logOut" onClick={handleLogout}>
+              LogOut
+            </div>
           </div>
         </div>
       </header>
