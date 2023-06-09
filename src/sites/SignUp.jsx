@@ -1,12 +1,9 @@
 import supabase from "../servives/supabase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 import FormLog from "../components/FormLog";
 import BulbImage from "../components/BulbImage";
-
 import bulbOn from "../assets/bulb0n.jpeg";
-
 
 function SignUp() {
   const [authError, setAuthError] = useState(null);
@@ -17,12 +14,9 @@ function SignUp() {
     const { email, password, confirmPassword } = event.target.elements;
 
     if (password.value !== confirmPassword.value) {
-      //alert("passwords do not match");
-      setAuthError("passwords do not match") //DO POPRAWY DODAĆ DODATKOWY KOMPONENT RENDEROWANY WARUNKOWO
+      setAuthError("passwords do not match"); //DO POPRAWY DODAĆ DODATKOWY KOMPONENT RENDEROWANY WARUNKOWO
       return;
     }
-
-
 
     let { data, error } = await supabase.auth.signUp({
       email: email.value,
@@ -33,19 +27,16 @@ function SignUp() {
       navigation("/");
       return;
     }
-    setAuthError(error.message)
+    setAuthError(error.message);
   };
 
   const clearError = () => {
-    setAuthError(null)
-  }
-
+    setAuthError(null);
+  };
 
   return (
     <section className="signInUp">
-      <BulbImage
-        backgroundImage={bulbOn}
-      />
+      <BulbImage backgroundImage={bulbOn} />
       <div className="basicShadow"></div>
       <FormLog
         onClearError={clearError}
