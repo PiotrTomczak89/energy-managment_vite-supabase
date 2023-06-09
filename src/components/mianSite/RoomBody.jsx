@@ -58,7 +58,24 @@ const RoomBody = () => {
   return (
     <ul className="mainContent__Room__Body">
       {devicesInSeparateBasket.length > 0 ?
-      devicesInSeparateBasket.map((singleDevice) => (
+      <>
+
+            <ul className="mainContent__Room__BodyHeader">
+              <li>StBy</li>
+              <li>Name</li>
+              <li>Watt</li>
+              <li>Time</li>
+              <li>Switch</li>
+              <li>
+                <span
+                  className={"switchOn material-symbols-outlined on-off-icon"}
+                >
+                  delete
+                </span>
+              </li>
+            </ul>
+
+      {devicesInSeparateBasket.map((singleDevice) => (
         <li key={singleDevice.id} className="device">
           <span
             id={singleDevice.id}
@@ -72,6 +89,7 @@ const RoomBody = () => {
           </span>
           <p>{singleDevice.device_name}</p>
           <p>{singleDevice.device_power}</p>
+          <p>asd</p>
           <span
             id={singleDevice.id}
             className={
@@ -82,7 +100,6 @@ const RoomBody = () => {
           >
             power_settings_new
           </span>
-          <p>{singleDevice.device_OnOff}</p>
           <span
             id={singleDevice.id}
             onClick={handleDeleteFromSeparateBasket}
@@ -91,7 +108,9 @@ const RoomBody = () => {
             delete
           </span>
         </li>
-      ))
+      ))}
+      </>
+        
       :
       <li className="dropAreaContainer">
       <h3>Drop device here</h3>

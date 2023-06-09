@@ -65,7 +65,9 @@ const Statistic = () => {
         </div>
         <div className="statisticBox">
           <h2>Quantity of devices /  *active / all</h2>
-          <p>{activeDevice} / {devicesFromDataBase.length}<sup>items</sup></p>
+          <p>{activeDevice} / {devicesFromDataBase.length}<span class="material-symbols-outlined">
+devices
+</span></p>
         </div>
       </section>
       }
