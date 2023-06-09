@@ -19,5 +19,4 @@ const HeaderDevicesBasket = () => {
   );
 };
 
-
 export default HeaderDevicesBasket;
