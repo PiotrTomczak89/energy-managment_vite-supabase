@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import FormLogin from "../components/FormLog";
 import BulbImage from "../components/BulbImage";
-
 import supabase from "../servives/supabase";
-
-//import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
-//src/assets/bulb0n.jpeg
 import bulbOn from "../assets/bulb0n.jpeg";
 import bulbOff from "../assets/bulb0ff.jpg";
 
@@ -35,47 +30,31 @@ function SignIn() {
 
     setAuthError(error.message);
   };
- 
-    useEffect(() => {
-      if (authError !== null && opacity === 100) {
-        intervalId = setInterval(() => {
-          setOpacity((prevOpacity) => {
-            //console.log(prevOpacity)
-            if (prevOpacity < 0) {
-              clearInterval(intervalId);
-              setBackgroundImage(bulbOff);
-            }
-            return prevOpacity - 0.2;
-          });
-        }, 5)
-      }
-    }, [authError]);
 
-    const clearError = () => {
-      clearInterval(intervalId);
-      setAuthError(null);
-      setBackgroundImage(bulbOn);
-      setOpacity(100);
+  useEffect(() => {
+    if (authError !== null && opacity === 100) {
+      intervalId = setInterval(() => {
+        setOpacity((prevOpacity) => {
+          if (prevOpacity < 0) {
+            clearInterval(intervalId);
+            setBackgroundImage(bulbOff);
+          }
+          return prevOpacity - 0.2;
+        });
+      }, 5);
     }
-  
+  }, [authError]);
 
-  //authError needs better solution below an error message that occured already.
+  const clearError = () => {
+    clearInterval(intervalId);
+    setAuthError(null);
+    setBackgroundImage(bulbOn);
+    setOpacity(100);
+  };
+
   return (
     <section className="signInUp">
-      {/* <div className="signInUp-imageContainer">
-      
-        <img
-          src={backgroundImage}
-          alt="bulbOn"
-          width="100%"
-          height="100%"
-          style={backgroundImage === bulbOn ? {opacity: `${opacity}%`} : {opacity:"100%"}}
-        />
-      </div> */}
-      <BulbImage 
-        opacity={opacity}
-        backgroundImage={backgroundImage}
-      />
+      <BulbImage opacity={opacity} backgroundImage={backgroundImage} />
       <div className="basicShadow"></div>
       <FormLogin
         onClearError={clearError}
