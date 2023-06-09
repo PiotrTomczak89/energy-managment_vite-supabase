@@ -2,6 +2,7 @@ import { useStoreState } from "easy-peasy";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../servives/supabase"
 //import store from "./../../store/store.jsx"
+import bulbLogo from "../../assets/bulbLogo.svg"
 
 const Header = () => {
   const sessionLogin = useStoreState((state) => {
@@ -30,7 +31,7 @@ const Header = () => {
     <>
       <header className="headerMain">
         <div className="logo">
-          <img src="src/assets/bulbLogo.svg" className="st0 st1" alt="logo bulb"></img>
+          <img src={bulbLogo} className="st0 st1" alt="logo bulb"></img>
         </div>
         <div className="userInformation">
           <div className="userName">
