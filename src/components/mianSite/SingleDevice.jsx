@@ -1,6 +1,4 @@
-import { StoreProvider, useStoreState, useStoreActions } from "easy-peasy";
-import { useEffect, useState } from "react";
-import store from "../../store/store.jsx";
+import { useStoreState, useStoreActions } from "easy-peasy";
 import supabase from "../../servives/supabase.js";
 import { useDrag } from "react-dnd";
 
@@ -108,9 +106,7 @@ const SingleDevice = ({ singleDevice }) => {
   //DnD
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "singleDevice",
-    item: {id: singleDevice.id,
-    tab: devicesFromDataBase,
-    },
+    item: { id: singleDevice.id, tab: devicesFromDataBase },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -120,7 +116,10 @@ const SingleDevice = ({ singleDevice }) => {
       <li
         key={singleDevice.id}
         ref={drag}
-        style={{ border: isDragging ? "2px solid red" : "" }}
+        style={{
+          background: isDragging ? "#3D3E40" : "",
+          border: isDragging ? "1px solid #3E2D45" : "",
+        }}
         className="device"
       >
         <p style={{ display: "flex", alignItems: "center" }}>
@@ -139,20 +138,17 @@ const SingleDevice = ({ singleDevice }) => {
           {singleDevice.device_name}
         </p>
 
-        {/* <p>{el.device_power}</p> */}
-
         <p className="inputNumberContainer">
           <input
             className="inputNumberSmall"
             id={singleDevice.id}
             onChange={handleUpdatePower}
             min="1"
-            defaultValue={singleDevice.device_power} //!!!!!!!!!!!!!!!
+            defaultValue={singleDevice.device_power}
             style={smallInputStyle}
             type="number"
           />
         </p>
-        {/* <p>{el.device_working_time}</p> */}
         <p>
           <input
             className="inputNumberSmall"
@@ -160,12 +156,11 @@ const SingleDevice = ({ singleDevice }) => {
             onChange={handleUpdateWorkingTime}
             min="1"
             placeholder={singleDevice.device_working_time}
-            defaultValue={singleDevice.device_working_time} //!!!!!!!!!!!!!!!
+            defaultValue={singleDevice.device_working_time}
             style={smallInputStyle}
             type="time"
           />
         </p>
-        {/* <p>{el.device_stand_OnOff}</p> */}
         <span
           id={singleDevice.id}
           data-test={singleDevice.id}
