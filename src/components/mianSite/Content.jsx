@@ -13,7 +13,7 @@ const Content = ({ data }) => {
   );
 
   //save data as user email to storage
-  //const createSession = useStoreActions((actions) => actions.importSession(data.session.user.email));
+  const createSession = useStoreActions((actions) => actions.importSession(data.session.user.email));
 
   //read data as user email from storage
   const sessionLogin = useStoreState((state) => {
