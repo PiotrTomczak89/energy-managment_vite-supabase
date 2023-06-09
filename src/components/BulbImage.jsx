@@ -1,4 +1,4 @@
-import bulbOn from "C:/JS_PROJECTS/energy-managment-vite-supabase/src/assets/bulb0n.jpeg";
+import bulbOn from "../assets/bulb0n.jpeg";
 
 const BulbImage = ({ opacity, backgroundImage }) => {
   return (
