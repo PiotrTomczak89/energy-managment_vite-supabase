@@ -5,7 +5,8 @@
 
         .mainContent {
           width: 100%;
-          min-height: 85vh;
+          min-height: 90vh;
+          // max-height: 90vh;
           display: flex;
 
           @include tablet {
@@ -31,11 +32,12 @@
             }
           }
           &__Data {
-            position: absolute;
-            left: 20%;
+            //position: absolute;
+            margin-left: 20%;
             width: 80%;
             @include tablet {
               width: 100%;
+              margin-left: 0;
               position: static;
             }
           }
