@@ -143,7 +143,7 @@ const SingleDevice = ({ singleDevice }) => {
             className="inputNumberSmall"
             id={singleDevice.id}
             onChange={handleUpdatePower}
-            min="1"
+            min={1}
             defaultValue={singleDevice.device_power}
             style={smallInputStyle}
             type="number"
