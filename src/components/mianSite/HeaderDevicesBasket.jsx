@@ -4,7 +4,11 @@ const HeaderDevicesBasket = ({devicesFromDataBase}) => {
     <div className="headerContainer">
       <header>
       Devices Basket
-      <p><span className="material-symbols-outlined">devices</span> {devicesFromDataBase.length} <span className="material-symbols-outlined">devices</span></p>
+      <p>
+        <span style={{rotate: devicesFromDataBase.length % 2 === 0 ? "360deg" : "" , transition: "1s", margin:"12px"}} className="material-symbols-outlined">devices</span>
+        {devicesFromDataBase.length}
+        <span style={{rotate: devicesFromDataBase.length % 2 === 0 ? "360deg" : "" , transition: "1s", margin:"12px"}} className="material-symbols-outlined">devices</span>
+        </p>
         <ul>
           <li>StBy Name</li>
           <li>Watt</li>
