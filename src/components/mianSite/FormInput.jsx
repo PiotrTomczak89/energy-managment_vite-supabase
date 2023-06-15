@@ -3,6 +3,7 @@ import { useStoreActions, useStoreState } from "easy-peasy";
 import supabase from "../../servives/supabase";
 
 const FormInput = () => {
+
   const insertExtraDevice = useStoreActions(
     (actions) => actions.addLatestDeviceToDeviceTable
   );

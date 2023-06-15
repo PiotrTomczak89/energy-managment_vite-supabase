@@ -1,8 +1,10 @@
-const HeaderDevicesBasket = () => {
+const HeaderDevicesBasket = ({devicesFromDataBase}) => {
+
   return (
     <div className="headerContainer">
       <header>
-        Devices Basket
+      Devices Basket
+      <p><span className="material-symbols-outlined">devices</span> {devicesFromDataBase.length} <span className="material-symbols-outlined">devices</span></p>
         <ul>
           <li>StBy Name</li>
           <li>Watt</li>

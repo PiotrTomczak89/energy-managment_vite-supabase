@@ -9,7 +9,7 @@ const AllDevicesBox = () => {
   return (
     <div className="mainContent__Input__Box">
       <div className="mainContent__Input__Box--insideBox">
-        <HeaderDevicesBasket />
+        <HeaderDevicesBasket devicesFromDataBase={devicesFromDataBase}/>
         <ul className="deviceContainer">
           {devicesFromDataBase &&
             devicesFromDataBase.map((singleDevice) => (
