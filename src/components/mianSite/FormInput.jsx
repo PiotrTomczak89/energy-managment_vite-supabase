@@ -8,6 +8,8 @@ const FormInput = () => {
   );
 
   const [errorName, setErrorName] = useState(null);
+  const [errorPower, setErrorPower] = useState(null);
+  const [errorWorkingTime, setErrorWorkingTime] = useState(null);
 
   const sessionLogin = useStoreState((state) => {
     return state.sessionLogin;
@@ -20,10 +22,22 @@ const FormInput = () => {
       event.target.elements;
 
     if (deviceName.value === "") {
-      alert("Name-is required");
       setErrorName("- is required");
       return;
     }
+    if (devicePower.value === "") {
+      setErrorPower("- is required");
+      return;
+    }
+    if (devicePower.value < 0) {
+      setErrorPower("- min value 0");
+      return;
+    }
+    if (deviceWorkingTime.value === "") {
+      setErrorWorkingTime("- min value 00:00");
+      return;
+    }
+ 
 
     const { data, error } = await supabase
       .from("deviceTable")
@@ -48,6 +62,12 @@ const FormInput = () => {
     if (errorName) {
       setErrorName(null);
     }
+    if (errorPower) {
+      setErrorPower(null);
+    }
+    if (errorWorkingTime) {
+      setErrorWorkingTime(null);
+    }
   };
 
   return (
@@ -64,15 +84,15 @@ const FormInput = () => {
         </label>
       </div>
       <div className="formMain">
-        <input id="devicePower" type="number" />
+        <input id="devicePower" type="number"/>
         <label className="formLabel" htmlFor="">
-          Watt
+          Watt<p style={{ color: "red" }}>{errorPower}</p>
         </label>
       </div>
       <div className="formMain">
         <input id="deviceWorkingTime" type="time" />
         <label className="formLabel" htmlFor="">
-          Working time
+          Working time<p style={{ color: "red" }}>{errorWorkingTime}</p>
         </label>
       </div>
       <div className="formMain">

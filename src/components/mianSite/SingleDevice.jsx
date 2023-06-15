@@ -21,10 +21,10 @@ const SingleDevice = ({ singleDevice }) => {
     const { error } = await supabase
       .from("deviceTable")
       .delete()
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
-      deleteDevice({ table: devicesFromDataBase, id: event.target.id });
+      deleteDevice({ table: devicesFromDataBase, id: event.target.dataset.id });
     }
   };
 
@@ -38,10 +38,10 @@ const SingleDevice = ({ singleDevice }) => {
             ? false
             : true,
       })
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
-      switchOnOff({ table: devicesFromDataBase, id: event.target.id });
+      switchOnOff({ table: devicesFromDataBase, id: event.target.dataset.id });
     }
   };
 
@@ -55,38 +55,50 @@ const SingleDevice = ({ singleDevice }) => {
             ? false
             : true,
       })
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
-      switchStandBy({ table: devicesFromDataBase, id: event.target.id });
+      switchStandBy({ table: devicesFromDataBase, id: event.target.dataset.id });
     }
   };
 
-  const handleUpdatePower = async (event) => {
+  const handleUpdatePowerDataBase = async (event) => {
     const { data, error } = await supabase
       .from("deviceTable")
       .update({ device_power: event.target.value })
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
       updatePower({
         table: devicesFromDataBase,
-        id: event.target.id,
+        id: event.target.dataset.id,
         value: event.target.value,
       });
     }
   };
 
-  const handleUpdateWorkingTime = async (event) => {
+   const handleUpdatePower = (event) => {
+    if (event.target.value < 0) {
+      event.target.value = 0
+    }
+    else if (event.target.value === "") {
+      return
+    }
+    else {
+      handleUpdatePowerDataBase(event)
+    }
+   }
+
+   const handleUpdateWorkingTime = async (event) => {
     const { data, error } = await supabase
       .from("deviceTable")
       .update({ device_working_time: event.target.value })
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
       updateWorkingTime({
         table: devicesFromDataBase,
-        id: event.target.id,
+        id: event.target.dataset.id,
         value: event.target.value,
       });
     }
@@ -124,7 +136,7 @@ const SingleDevice = ({ singleDevice }) => {
       >
         <p style={{ display: "flex", alignItems: "center" }}>
           <span
-            id={singleDevice.id}
+            data-id={singleDevice.id}
             data-test={singleDevice.id}
             onClick={handleSwitchStandBy}
             className={
@@ -141,9 +153,9 @@ const SingleDevice = ({ singleDevice }) => {
         <p className="inputNumberContainer">
           <input
             className="inputNumberSmall"
-            id={singleDevice.id}
+            data-id={singleDevice.id}
             onChange={handleUpdatePower}
-            min={1}
+            min = {1}
             defaultValue={singleDevice.device_power}
             style={smallInputStyle}
             type="number"
@@ -152,9 +164,8 @@ const SingleDevice = ({ singleDevice }) => {
         <p>
           <input
             className="inputNumberSmall"
-            id={singleDevice.id}
+            data-id={singleDevice.id}
             onChange={handleUpdateWorkingTime}
-            min="1"
             placeholder={singleDevice.device_working_time}
             defaultValue={singleDevice.device_working_time}
             style={smallInputStyle}
@@ -162,7 +173,7 @@ const SingleDevice = ({ singleDevice }) => {
           />
         </p>
         <span
-          id={singleDevice.id}
+          data-id={singleDevice.id}
           data-test={singleDevice.id}
           onClick={handleSwitchOnOff}
           className={
@@ -174,7 +185,7 @@ const SingleDevice = ({ singleDevice }) => {
           power_settings_new
         </span>
         <span
-          id={singleDevice.id}
+          data-id={singleDevice.id}
           onClick={handleDelete}
           className="material-symbols-outlined delete-icon"
         >

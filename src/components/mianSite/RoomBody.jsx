@@ -11,16 +11,15 @@ const RoomBody = () => {
   );
 
   const handleDeleteFromSeparateBasket = async (event) => {
-    console.log(event.target.id);
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("deviceTable")
       .update({ room_name: "" })
-      .eq("id", event.target.id);
+      .eq("id", event.target.dataset.id);
 
     if (!error) {
       updateDeviceLocation({
         table: devicesFromDataBase,
-        id: parseInt(event.target.id),
+        id: parseInt(event.target.dataset.id),
         value: "",
       });
     }
@@ -38,7 +37,7 @@ const RoomBody = () => {
           {devicesInSeparateBasket.map((singleDevice) => (
             <li key={singleDevice.id} className="device">
               <span
-                id={singleDevice.id}
+                data-id={singleDevice.id}
                 className={
                   singleDevice.device_standBy
                     ? "switchOn material-symbols-outlined on-off-icon"
@@ -49,9 +48,8 @@ const RoomBody = () => {
               </span>
               <p>{singleDevice.device_name}</p>
               <p>{singleDevice.device_power}</p>
-              <p>asd</p>
+              <p>{singleDevice.device_working_time}</p>
               <span
-                id={singleDevice.id}
                 className={
                   singleDevice.device_OnOff
                     ? "switchOn material-symbols-outlined on-off-icon"
@@ -61,7 +59,7 @@ const RoomBody = () => {
                 power_settings_new
               </span>
               <span
-                id={singleDevice.id}
+                data-id={singleDevice.id}
                 onClick={handleDeleteFromSeparateBasket}
                 className="material-symbols-outlined delete-icon"
               >
