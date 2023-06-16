@@ -1,40 +1,50 @@
 //Text typing animation
-  
+
 .animeTypingSymulation {
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    animation: type 4s steps(60, end); 
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  animation: type 4s steps(60, end);
+}
+
+.typingSymulationAnime:nth-child(2) {
+  animation: type2 8s steps(60, end);
+}
+
+@keyframes type {
+  from {
+    width: 0;
   }
-  
-  .typingSymulationAnime:nth-child(2){
-    animation: type2 8s steps(60, end);
+}
+
+@keyframes type2 {
+  0% {
+    width: 0;
   }
- 
-  @keyframes type{ 
-    from { width: 0; } 
-  } 
-  
-  @keyframes type2{
-    0%{width: 0;}
-    50%{width: 0;}
-    100%{ width: 100; } 
+
+  50% {
+    width: 0;
   }
+
+  100% {
+    width: 100;
+  }
+}
 
 
 
-  //rotate loading page
-  #bulbUp {
-    transform-origin: 307px 316px;
-    animation-name: rotateBulb;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+//rotate loading page
+#bulbUp {
+  transform-origin: 307px 316px;
+  animation-name: rotateBulb;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 @keyframes rotateBulb {
   100% {
-      rotate: 360deg;
+    rotate: 360deg;
   }
 }
 
@@ -46,18 +56,17 @@
     left: 1%;
     opacity: 0;
     font-size: 0px;
-    @include mobile {
-      bottom: 0px;
-    }
   }
+
   50% {
     opacity: 100%;
   }
+
   100% {
     bottom: 50px;
     left: 100%;
     opacity: 0;
-    color:$turquoise-lighter;
+    color: $turquoise-lighter;
     font-size: 52px;
   }
 }
@@ -67,13 +76,15 @@
     0% {
       bottom: 0px;
     }
+
     50% {
       opacity: 100%;
     }
+
     100% {
       bottom: -50px;
       opacity: 0;
-      color:$turquoise-lighter;
+      color: $turquoise-lighter;
       font-size: 52px;
     }
   }
