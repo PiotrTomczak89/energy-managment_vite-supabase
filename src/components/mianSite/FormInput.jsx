@@ -39,8 +39,14 @@ const FormInput = () => {
       setErrorWorkingTime("- min value 00:00");
       return;
     }
- 
 
+    const cleanFormValue = ({deviceName, devicePower, deviceWorkingTime, deviceStandBy}) => {
+      deviceName.value = "";
+      devicePower.value = "";
+      deviceWorkingTime.value = "00:00";
+      deviceStandBy.value = "YES";
+    }
+ 
     const { data, error } = await supabase
       .from("deviceTable")
       .insert([
@@ -58,7 +64,8 @@ const FormInput = () => {
       //function added one specific device to existing data in store
       insertExtraDevice(data[0]);
       if (deviceName.value === data[0].device_name) {
-        setDeviceUploaded(true)
+        setDeviceUploaded(true);
+        cleanFormValue(event.target.elements)
       }
     }
   };
