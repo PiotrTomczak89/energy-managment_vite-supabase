@@ -11,6 +11,7 @@ const FormInput = () => {
   const [errorName, setErrorName] = useState(null);
   const [errorPower, setErrorPower] = useState(null);
   const [errorWorkingTime, setErrorWorkingTime] = useState(null);
+  const [deviceUploaded , setDeviceUploaded] = useState(null)
 
   const sessionLogin = useStoreState((state) => {
     return state.sessionLogin;
@@ -56,6 +57,9 @@ const FormInput = () => {
     if (!error) {
       //function added one specific device to existing data in store
       insertExtraDevice(data[0]);
+      if (deviceName.value === data[0].device_name) {
+        setDeviceUploaded(true)
+      }
     }
   };
 
@@ -69,6 +73,7 @@ const FormInput = () => {
     if (errorWorkingTime) {
       setErrorWorkingTime(null);
     }
+    setDeviceUploaded(null)
   };
 
   return (
@@ -106,6 +111,7 @@ const FormInput = () => {
         </label>
       </div>
       <button className="btn btn-primary btn--main">Send</button>
+      {deviceUploaded && <span className="material-symbols-outlined">cloud_upload</span>}
     </form>
   );
 };
