@@ -132,6 +132,13 @@
                     font-size: 32px;
                     font-weight: 500;
                     color: $turquoise-lighter;
+                    span {
+                        //color: red;
+                        @include mobile {
+                            position: static;
+                            z-index: -10;
+                        }
+                    }
                     ul {
                         display: flex;
                         //justify-content: space-between;

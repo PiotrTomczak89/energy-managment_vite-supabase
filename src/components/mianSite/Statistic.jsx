@@ -50,7 +50,7 @@ const Statistic = () => {
   return (
     <>
       {devicesFromDataBase && (
-        <section className="mainContent__Statistic">
+        <section className="mainContent__Statistic" style={{zIndex: "100"}}>
           <div className="statisticBox">
             <h2>Consumed power / DAY</h2>
             <p>
