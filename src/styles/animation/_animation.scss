@@ -38,21 +38,43 @@
   }
 }
 
-@keyframes mymove {
+
+
+@keyframes uploadFile {
   0% {
     bottom: -125px;
     left: 1%;
     opacity: 0;
     font-size: 0px;
+    @include mobile {
+      bottom: 0px;
+    }
   }
   50% {
     opacity: 100%;
   }
   100% {
     bottom: 50px;
-    left: 75%;
+    left: 100%;
     opacity: 0;
     color:$turquoise-lighter;
     font-size: 52px;
+  }
+}
+
+@include mobile {
+  @keyframes uploadFile {
+    0% {
+      bottom: 0px;
+    }
+    50% {
+      opacity: 100%;
+    }
+    100% {
+      bottom: -50px;
+      opacity: 0;
+      color:$turquoise-lighter;
+      font-size: 52px;
+    }
   }
 }
