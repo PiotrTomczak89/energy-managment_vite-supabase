@@ -50,10 +50,10 @@ const RoomHeader = () => {
           {power.toFixed(2)} <sup>kWh/DAY</sup>
         </p>
         <p>
-          {(power * daysInMounth).toFixed(2)} <sup>kWh/DAY</sup>
+          {(power * daysInMounth).toFixed(2)} <sup>kWh/MOUNTH</sup>
         </p>
         <p>
-          {(power * daysInYear).toFixed(2)} <sup>kWh/DAY</sup>
+          {(power * daysInYear).toFixed(2)} <sup>kWh/YEAR</sup>
         </p>
       </div>
     </div>
